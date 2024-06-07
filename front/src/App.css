@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: var(--grey);
+}
+:root{
+  --grey:#EEEEEE;
+  --darkGray:#686D76;
+  --darkerGray:#373A40;
+  --orange:#DC5F00;
+  --fontSmall:"Trebuchet MS";
+  --fontBig:'Franklin Gothic Medium';
+}
+.link{
+  text-decoration: none;
+  color: var(--grey);
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  padding-top: 15px;
+  padding-inline: 20px;
+  background-color: var(--orange);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+nav .first{
+  display: flex;
+  align-items: center;
+}
+nav .logo{
+  border-right: solid 3px white;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+nav h1{
+  font-family: var(--fontBig);
+  font-size: 25px;
+  color: var(--grey);
+  margin-right: 7px;
+}
+nav .links ul{
+  list-style: none;
+}
+nav .links li{
+  float: left;
+  padding-inline: 15px;
+  font-size: 17px;
+  font-family: var(--fontSmall);
+}
+nav .buttons button{
+  margin-left: 15px;
+  padding: 10px 18px;
+  border: none;
+  background-color: var(--darkerGray);
+  color: white;
+  font-family: var(--fontBig);
+  font-size: 17px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+nav .buttons button:nth-child(1){
+  background-color: white;
+  color: var(--darkerGray);
+}
