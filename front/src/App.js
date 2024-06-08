@@ -15,6 +15,7 @@ import Login from './Components/Login';
 import NotFound from './Pages/NotFound';
 import Nav from './Components/Nav';
 import Companies from './Pages/Companies';
+import Footer from './Components/Footer';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Route path='*' element={<NotFound/>}/>
           </Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );
