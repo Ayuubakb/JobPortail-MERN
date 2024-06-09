@@ -6,6 +6,10 @@
 body{
   background-color: var(--grey);
 }
+.sec{
+  min-height: calc(100vh - 100px);
+  position: relative;
+}
 :root{
   --grey:#EEEEEE;
   --darkGray:#686D76;
@@ -26,6 +30,7 @@ nav{
   padding-top: 15px;
   padding-inline: 20px;
   background-color: var(--orange);
+  height: 75px;
 }
 nav .first{
   display: flex;
@@ -286,4 +291,186 @@ footer h3{
   font-family: var(--fontSmall);
   font-size: 20px;
   margin-bottom: 7px;
+}
+.signup .signupCon{
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 5%;
+  border: solid 2px var(--darkGray);
+  border-radius: 15px;
+  padding: 15px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-bottom: 30px;
+}
+.processBar{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.processBar .num{
+  width:40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--darkGray);
+  border-radius: 50%;
+  color: var(--grey);
+}
+.processBar #num1{
+  background-color: #DC5F00;
+}
+.processBar .line{
+  width: calc(50% - 20px);
+  padding: 3px;
+  background-color: var(--darkGray);
+}
+.signup .signupCon h1{
+  font-size: 30px;
+  font-family: var(--fontBig);
+  color: #DC5F00;
+  text-align: center;
+}
+.signup .signupCon form{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.signup .signupCon form div{
+  flex: 0 0 100%;
+}
+.signup .signupCon .last .top{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.signup .signupCon .last label{
+  position: relative;
+  padding: 20px;
+  background-color: #DC5F00;
+  margin-left: 15px;
+  border-radius: 15px;
+  font-size: 20px;
+  color: var(--grey);
+  font-family: var(--fontBig);
+  cursor: pointer;
+  overflow: hidden;
+  width: 30%;
+  text-align: center;
+}
+.signup .signupCon .last input{
+  opacity: 0;
+  width: 0px;
+}
+.signup .signupCon label:has(input:checked){
+  background-color: #686D76;
+}
+.input, .selIn{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.input label , .selIn label{
+  font-family: var(--fontSmall);
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: var(--darkerGray);
+}
+.input input, .selIn select{
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 17px;
+  font-family: var(--fontSmall);
+  color: var(--darkGray);
+}
+.signup .buttons button{
+  padding: 10px 18px;
+  font-family: var(--fontBig);
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: var(--darkerGray);
+  border: none;
+  color: var(--grey);
+  width: 48%;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.signup p{
+  font-family: var(--fontBig);
+  font-size: 22px;
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+.signup .buttons button:nth-child(2){
+  background-color: var(--orange);
+  margin-left: 4%;
+}
+.logSec{
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 0vw;
+  height: 100%;
+  background-color: #373a40b3;
+  z-index: 4;
+}
+.login{
+  position: absolute;
+  padding: 45px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 4px 5px 10px var(--darkGray);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  width: max(350px , 30%);
+}
+.login h1{
+  margin-bottom: 25px;
+  color: var(--darkerGray);
+  font-family: var(--fontBig);
+  text-align: center;
+  font-size: 30px;
+}
+.login p{
+  margin-top: 15px;
+  font-family: var(--fontSmall);
+  font-size: 17px;
+  color: var(--darkGray);
+}
+.login input{
+  border: solid 1px var(--darkGray);
+}
+.login span{
+  color: var(--orange);
+}
+.login button{
+  width: 100%;
+  background-color: var(--orange);
+  color: white;
+  font-family: var(--fontBig);
+  padding: 8px;
+  font-size: 22px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 25px;
+}
+.login .closelog{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: -18px;
+  right: -18px;
+  background-color: var(--darkerGray);
+  color: white;
+  cursor: pointer;
 }

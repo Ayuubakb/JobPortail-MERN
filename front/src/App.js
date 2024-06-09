@@ -21,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Login/>
       <Nav/>
         <Routes>
           <Route index element={<Home/>}/>

@@ -1,8 +1,17 @@
 import React from 'react'
 
-const Input = () => {
+const Input = ({name,placeholder,inputs,setInputs,type}) => {
   return (
-    <div>Input</div>
+    <div className='input'>
+        <label>{placeholder} :</label>
+        <input
+            name={name}
+            type={type}
+            placeholder={placeholder+"..."}
+            value={inputs.name}
+            onChange={(e)=>{setInputs((i)=>{return {...i,[name]:e.target.value}})}}
+        />
+    </div>  
   )
 }
 
