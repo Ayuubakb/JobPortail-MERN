@@ -25,38 +25,35 @@ const verifyEmpl=(req,res,next)=>{
         if(req.session.Auth.companyName)
             next()
         else
-            res.status(403).json({msg:"forbiden"})
+            res.status(403).json({msg:"forbbiden"})
     }
-    res.status(403).json({msg:"forbiden"})
+    res.status(403).json({msg:"forbbiden"})
+}
+const checkExist=async(req,res)=>{
+    const inputs=req.body
+    await Candidate.findOne({login:inputs.login}).then((user)=>{
+        if(user)
+           res.status(400).json({msg:"User Already Exists"})
+        else
+           res.status(200).json({msg:"Continue"})
+    })
 }
 const signup=async(req,res)=>{
     const inputs=req.body
-    const saved=false;
-    let existingUser=false;
-    await Candidate.findOne({login:inputs.login}).then((user)=>{
-        console.log(user);
-        if(user)
-            existingUser=true
-    })
-    if(!existingUser){
-        inputs.password=await bcrypt.hash(inputs.password,10)
-        let newUser;
-        if(req.body.companyName)
-             newUser=new Employer(inputs)
-        else if(req.body.firstName)
-             newUser=new Candidate(inputs)
-        await newUser.save().then((savedDocument)=>{
-            if(inputs.login===savedDocument.login)
-                res.status(200).json({msg:"SignedUp Succesfuly"})
-            else
-                res.status(500).json({msg:"An Error Occured while saving data"})
-        },()=>{
+    inputs.password=await bcrypt.hash(inputs.password,10)
+    let newUser;
+    if(inputs.companyName)
+            newUser=new Employer(inputs)
+    else if(inputs.firstName)
+            newUser=new Candidate(inputs)
+    await newUser.save().then((savedDocument)=>{
+        if(inputs.login===savedDocument.login)
+            res.status(200).json({msg:"SignedUp Succesfuly"})
+        else
             res.status(500).json({msg:"An Error Occured while saving data"})
-        })
-    }else{
-        console.log(" exist");
-        res.status(400).json("User Already Exists")
-    }
+    },()=>{
+        res.status(500).json({msg:"An Error Occured while saving data"})
+    })
 }
 
 const login=async(req,res)=>{
@@ -64,28 +61,8 @@ const login=async(req,res)=>{
     const password=req.body.password;
     let found=false
     await Candidate.findOne({login:email}).then(async(candid)=>{
-        if(candid.firstName!=undefined){
-            found=true
-            const foundPassword=candid.password
-            const isPassword=await bcrypt.compare(password,foundPassword)
-            if(isPassword){
-                const objct={
-                    id:candid._id,
-                    login:candid.login,
-                    firstName:candid.firstName,
-                    lastName:candid.lastName,
-                    field:candid.field,
-                    emailReveive:candid.emailReceive
-                }
-                req.session.Auth=objct;
-                req.session.Auth?res.status(200).json({msg:"candidate"}):res.status(500).json({msg:"Session Error"})
-            }else
-                res.status(400).json({msg:"Incorrect Password"})
-        }
-    })
-    if(!found){
-        await Employer.findOne({login:email}).then(async(candid)=>{
-            if(candid.companyName!=undefined){
+        if(candid){
+            if(candid.firstName!=undefined){
                 found=true
                 const foundPassword=candid.password
                 const isPassword=await bcrypt.compare(password,foundPassword)
@@ -93,14 +70,38 @@ const login=async(req,res)=>{
                     const objct={
                         id:candid._id,
                         login:candid.login,
-                        companyName:candid.companyName,
+                        firstName:candid.firstName,
+                        lastName:candid.lastName,
                         field:candid.field,
-                        emailReceive:candid.emailReceive
+                        emailReveive:candid.emailReceive
                     }
                     req.session.Auth=objct;
-                    req.session.Auth?res.status(200).json({msg:"employer"}):res.status(500).json({msg:"Session Error"})
+                    req.session.Auth?res.status(200).json({msg:"candidate"}):res.status(500).json({msg:"Session Error"})
                 }else
                     res.status(400).json({msg:"Incorrect Password"})
+            }
+        }
+    })
+    if(!found){
+        await Employer.findOne({login:email}).then(async(candid)=>{
+            if(candid){
+                if(candid.companyName!=undefined){
+                    found=true
+                    const foundPassword=candid.password
+                    const isPassword=await bcrypt.compare(password,foundPassword)
+                    if(isPassword){
+                        const objct={
+                            id:candid._id,
+                            login:candid.login,
+                            companyName:candid.companyName,
+                            field:candid.field,
+                            emailReceive:candid.emailReceive
+                        }
+                        req.session.Auth=objct;
+                        req.session.Auth?res.status(200).json({msg:"employer"}):res.status(500).json({msg:"Session Error"})
+                    }else
+                        res.status(400).json({msg:"Incorrect Password"})
+                }
             }
         })
     }
@@ -120,5 +121,6 @@ module.exports={
     signup,
     login,
     logout,
-    verifyConnected
+    verifyConnected,
+    checkExist
 }

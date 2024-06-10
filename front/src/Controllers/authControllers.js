@@ -9,6 +9,7 @@ const check=async(setUserType,setId)=>{
         setId(res.id)
     })
 }
+
 const login=async(inputs,setError)=>{
     const response=await fetch(process.env.REACT_APP_SERVER_URI+"Authentification/login",{
         method:"POST",
@@ -20,6 +21,20 @@ const login=async(inputs,setError)=>{
     })
     await response.json().then((res)=>{
         setError(res.msg)
+    })
+}
+
+const checkExists=async(inputs,setErr)=>{
+    const response=await fetch(process.env.REACT_APP_SERVER_URI+"Authentification/checkExist",{
+        method:"POST",
+        credentials:'include',
+        body:JSON.stringify(inputs),
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+    await response.json().then((res)=>{
+        setErr(res.msg)
     })
 }
 const signup=async(inputs,setError)=>{
@@ -35,6 +50,7 @@ const signup=async(inputs,setError)=>{
         setError(res.msg)
     })
 }
+
 const logout=async(setErr)=>{
     const response=await fetch(process.env.REACT_APP_SERVER_URI+"Authentification/logout",{
         method:"DELETE",
@@ -48,5 +64,6 @@ module.exports={
     signup,
     login,
     logout,
-    check
+    check, 
+    checkExists
 }

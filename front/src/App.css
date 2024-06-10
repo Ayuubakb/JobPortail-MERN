@@ -322,6 +322,7 @@ footer h3{
   padding: 3px;
   background-color: var(--darkGray);
 }
+
 .signup .signupCon h1{
   font-size: 30px;
   font-family: var(--fontBig);
@@ -329,9 +330,8 @@ footer h3{
   text-align: center;
 }
 .signup .signupCon form{
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
-  align-items: center;
   overflow: hidden;
 }
 .signup .signupCon form div{
@@ -367,7 +367,7 @@ footer h3{
 .input, .selIn{
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .input label , .selIn label{
   font-family: var(--fontSmall);
@@ -395,7 +395,7 @@ footer h3{
   cursor: pointer;
   margin-top: 20px;
 }
-.signup p{
+.signup form p{
   font-family: var(--fontBig);
   font-size: 22px;
   margin-bottom: 15px;
@@ -469,4 +469,14 @@ footer h3{
   background-color: var(--darkerGray);
   color: white;
   cursor: pointer;
+}
+.err{
+  font-size: 20px;
+  color: var(--darkerGray);
+  font-family: var(--fontBig);
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 0;
+  height: 22px;
+  text-decoration:2px var(--orange) underline;
 }

@@ -1,68 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../Components/Input'
-import { signup } from '../Controllers/authControllers'
+import { checkExists, signup } from '../Controllers/authControllers'
+import { industries } from '../Controllers/utils'
 
 const Signup = () => {
-    const industries=["Technology","Healthcare","Finance","Retail","Energy","Automotive","Telecommunications","Consumer Goods","Aerospace and Defense","Media and Entertainment"]
     const [inputs,setInputs]=useState({login:"",password:"",emailReceive:""})
     const [companyValues,setCompanyValues]=useState({companyName:"",field:"",location:"",numEmployees:null})
     const [jobValues,setJobValues]=useState({firstName:"",lastName:"",number:"",field:""})
     const [err,setErr]=useState("")
-    const [choice,setChoice]=useState("")
+    const [choice,setChoice]=useState({target:"",notTarget:""})
     const handleSubmit=(e)=>{
         e.preventDefault()
         console.log(inputs.emailReceive);
         if(inputs.emailReceive!=="")
-            choice==="company"? signup({...inputs,...companyValues},setErr): signup({...inputs,...jobValues},setErr)
+            choice.target==="company"? signup({...inputs,...companyValues},setErr): signup({...inputs,...jobValues},setErr)
     }
     const handleRadio=()=>{
         if(document.getElementById("yesRadio").checked)
             setInputs((i)=>{return {...i,["emailReceive"]:true}})
         else
             setInputs((i)=>{return {...i,["emailReceive"]:false}})   
-    }
-    const handleCompany=()=>{
-        const regex=new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-        console.log(regex.test(inputs.login));
-        if(inputs.login!=="" && inputs.password!=="" && regex.test(inputs.login)){
-            setChoice("company")
-            document.getElementById("job").style.display="none"
-            document.getElementById("general").animate(animation,timer)
-            document.getElementById("company").animate(animation,timer)
-            setTimeout(()=>{
-                document.getElementById("general").style.transform="translateX(-100%)"
-                document.getElementById("company").style.transform="translateX(-100%)"
-                document.getElementById("line1").style.backgroundColor="#DC5F00"
-                document.getElementById("num2").style.backgroundColor="#DC5F00"
-            },290)
-        }
-    }
-    const handleJob=()=>{
-        if(inputs.login!=="" && inputs.password!==""){
-            setChoice("job")
-            document.getElementById("company").style.display="none"
-            document.getElementById("general").animate(animation,timer)
-            document.getElementById("job").animate(animation,timer)
-            setTimeout(()=>{
-                document.getElementById("general").style.transform="translateX(-100%)"
-                document.getElementById("job").style.transform="translateX(-100%)"
-                document.getElementById("line1").style.backgroundColor="#DC5F00"
-                document.getElementById("num2").style.backgroundColor="#DC5F00"
-            },290)
-        }
-    }
-    const handleContinue=()=>{
-        if((choice==="job" && jobValues.lastName!=="" && jobValues.firstName!=="" && jobValues.field!=="" && jobValues.number!=="")
-            || (choice==="company" && companyValues.companyName!=="" && companyValues.field!=="" && companyValues.location!=="" && companyValues.numEmpl!==null)){
-            document.getElementById(choice).animate(animation2,timer)
-            document.getElementById("last").animate(animation2,timer)
-            setTimeout(()=>{
-                document.getElementById(choice).style.transform="translateX(-200%)"
-                document.getElementById("last").style.transform="translateX(-200%)"
-                document.getElementById("line2").style.backgroundColor="#DC5F00"
-                document.getElementById("num3").style.backgroundColor="#DC5F00"
-            },290)
-        }
     }
     const animation=[
         {transform:"translateX(0%)"},
@@ -76,6 +33,46 @@ const Signup = () => {
         iterations:1,
         duration:300
     }
+    const slideTo2=(tmp)=>{
+        tmp==="company"?setChoice({target:"company",notTarget:"job"}):setChoice({target:"job",notTarget:"company"})
+        const regex=new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        if(inputs.login!=="" && inputs.password!=="" && regex.test(inputs.login)){
+            checkExists(inputs,setErr)
+        }
+    }
+    const handleCompany=()=>{
+        slideTo2("company")
+    }
+    const handleJob=()=>{
+        slideTo2("job")
+    }
+    const handleContinue=()=>{
+        if((choice.target==="job" && jobValues.lastName!=="" && jobValues.firstName!=="" && jobValues.field!=="" && jobValues.number!=="")
+            || (choice.target==="company" && companyValues.companyName!=="" && companyValues.field!=="" && companyValues.location!=="" && companyValues.numEmpl!==null)){
+            document.getElementById(choice.target).animate(animation2,timer)
+            document.getElementById("last").animate(animation2,timer)
+            setTimeout(()=>{
+                document.getElementById(choice.target).style.transform="translateX(-200%)"
+                document.getElementById("last").style.transform="translateX(-200%)"
+                document.getElementById("line2").style.backgroundColor="#DC5F00"
+                document.getElementById("num3").style.backgroundColor="#DC5F00"
+            },290)
+        }
+    }
+    useEffect(()=>{
+        if(err==='Continue'){
+            document.getElementById(choice.notTarget).style.display="none"
+            document.getElementById("general").animate(animation,timer)
+            document.getElementById(choice.target).animate(animation,timer)
+            setTimeout(()=>{
+                document.getElementById("general").style.transform="translateX(-100%)"
+                document.getElementById(choice.target).style.transform="translateX(-100%)"
+                document.getElementById("line1").style.backgroundColor="#DC5F00"
+                document.getElementById("num2").style.backgroundColor="#DC5F00"
+            },290)
+        }
+    },[err])
+    
   return (
     <section className='sec signup'>
         <div className='signupCon'>
@@ -83,7 +80,7 @@ const Signup = () => {
             <div className='processBar'>
                 <div className='num' id='num1'><i class="fa-solid fa-lg fa-1"></i></div><div className='line' id="line1"></div><div className='num' id='num2'><i class="fa-solid fa-lg fa-2"></i></div><div className='line' id='line2'></div><div className='num' id='num3'><i class="fa-solid fa-lg fa-3"></i></div>
             </div>
-            {err!==""?<p className='err'>{err}</p>:null}
+            <p className='err'>{err!=="Continue"?err:""}</p>
             <form onSubmit={handleSubmit}>
                 <div className='general' id="general">
                     <Input
@@ -124,7 +121,7 @@ const Signup = () => {
                     <div className='selIn'>
                         <label>Field Of Interest : </label>
                         <select name='field' onChange={(e)=>{setCompanyValues((i)=>{return {...i,[e.target.name]:e.target.value}})}}>
-                            <option value="">Industry</option>
+                            <option value="">Select An Industry</option>
                             {
                                 industries.map((industrie)=>{
                                     return(
@@ -163,6 +160,7 @@ const Signup = () => {
                     <div className='selIn'>
                         <label>Field Of Interest : </label>
                         <select name='field' onChange={(e)=>{setJobValues((i)=>{return {...i,[e.target.name]:e.target.value}})}}>
+                            <option value="">Select An Industry</option>
                             {
                                 industries.map((industrie)=>{
                                     return(

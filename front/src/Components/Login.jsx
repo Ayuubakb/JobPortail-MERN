@@ -44,6 +44,7 @@ const Login = () => {
       <div className='login'>
           <div className='closelog' id='closeLog' onClick={handleClose}><i class="fa-solid fa-xmark fa-2xl"></i></div>
           <h1><h1>JobPortail <i class="fa-solid fa-magnifying-glass"></i></h1></h1>
+          <p className='err'>{err}</p>
           <form onSubmit={handleSubmit}>
             <Input
               name="login"
