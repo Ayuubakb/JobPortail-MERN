@@ -10,7 +10,23 @@ const industries=[
     "Aerospace and Defense",
     "Media and Entertainment"
 ]
-
+const presence=[
+    "Remote",
+    "Hybrid",
+    "OnSite"
+]
+const position=[
+    "Permanent",
+    "Temporary",
+    "Internship"
+]
+const time=[
+    "Full-Time",
+    "Part-Time"
+]
 module.exports={
-    industries
+    industries,
+    position,
+    time,
+    presence
 }
