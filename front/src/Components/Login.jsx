@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Input from './Input'
+import { login } from '../Controllers/authControllers'
+import { useNavigate } from "react-router-dom"
+import userContext from '../Controllers/userContext'
 
 const Login = () => {
+  const navigate=useNavigate()
+  const {setUserType}=useContext(userContext)
   const [inputs,setInputs]=useState({login:"",password:""})
+  const [err,setErr]=useState("");
   const handleSubmit=(e)=>{
     e.preventDefault()
+    login(inputs,setErr)
   }
   const handleClose=()=>{
     document.getElementById('login').animate(animation,timer)
@@ -21,6 +28,17 @@ const Login = () => {
     iterations:1,
     duration:300
   }
+  useEffect(()=>{
+    if(err==="employer"){
+      handleClose();
+      setUserType("employer")
+      navigate("Employer")
+    }else if(err==="candidate"){
+      handleClose();
+      setUserType("candidate")
+      navigate("candidate")
+    }
+  },[err])
   return (
     <section className='logSec' id="login">
       <div className='login'>

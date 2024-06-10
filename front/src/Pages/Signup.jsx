@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import Input from '../Components/Input'
+import { signup } from '../Controllers/authControllers'
 
 const Signup = () => {
     const industries=["Technology","Healthcare","Finance","Retail","Energy","Automotive","Telecommunications","Consumer Goods","Aerospace and Defense","Media and Entertainment"]
     const [inputs,setInputs]=useState({login:"",password:"",emailReceive:""})
-    const [companyValues,setCompanyValues]=useState({companyName:"",field:"",location:"",numEmpl:null})
+    const [companyValues,setCompanyValues]=useState({companyName:"",field:"",location:"",numEmployees:null})
     const [jobValues,setJobValues]=useState({firstName:"",lastName:"",number:"",field:""})
-    console.log(inputs);
+    const [err,setErr]=useState("")
     const [choice,setChoice]=useState("")
     const handleSubmit=(e)=>{
         e.preventDefault()
-        if(inputs.emailReceive!==""){
-            choice==="company"?setInputs((i)=>{return {...i,...companyValues}}):setInputs((i)=>{return {...i,...jobValues}})
-        }
+        console.log(inputs.emailReceive);
+        if(inputs.emailReceive!=="")
+            choice==="company"? signup({...inputs,...companyValues},setErr): signup({...inputs,...jobValues},setErr)
     }
     const handleRadio=()=>{
         if(document.getElementById("yesRadio").checked)
@@ -21,8 +22,9 @@ const Signup = () => {
             setInputs((i)=>{return {...i,["emailReceive"]:false}})   
     }
     const handleCompany=()=>{
-        const regex=/^[a-zA-Z0-9. _%+-]+@[a-zA-Z0-9. -]+\\. [a-zA-Z]{2,}$/
-        if(inputs.login!=="" && inputs.password!=="" && inputs.login.match(regex)){
+        const regex=new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        console.log(regex.test(inputs.login));
+        if(inputs.login!=="" && inputs.password!=="" && regex.test(inputs.login)){
             setChoice("company")
             document.getElementById("job").style.display="none"
             document.getElementById("general").animate(animation,timer)
@@ -81,6 +83,7 @@ const Signup = () => {
             <div className='processBar'>
                 <div className='num' id='num1'><i class="fa-solid fa-lg fa-1"></i></div><div className='line' id="line1"></div><div className='num' id='num2'><i class="fa-solid fa-lg fa-2"></i></div><div className='line' id='line2'></div><div className='num' id='num3'><i class="fa-solid fa-lg fa-3"></i></div>
             </div>
+            {err!==""?<p className='err'>{err}</p>:null}
             <form onSubmit={handleSubmit}>
                 <div className='general' id="general">
                     <Input
@@ -132,7 +135,7 @@ const Signup = () => {
                         </select>
                     </div>
                     <Input
-                        name="numEmpl"
+                        name="numEmployees"
                         type="num"
                         placeholder="Number of Employees(~App)"
                         inputs={companyValues}

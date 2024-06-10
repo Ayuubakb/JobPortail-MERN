@@ -67,10 +67,6 @@ nav .buttons button{
   border-radius: 10px;
   cursor: pointer;
 }
-nav .buttons button:nth-child(1){
-  background-color: white;
-  color: var(--darkerGray);
-}
 .home .banner1{
   background-color: var(--orange);
   background-color: white;

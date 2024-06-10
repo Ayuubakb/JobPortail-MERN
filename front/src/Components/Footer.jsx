@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import userContext from '../Controllers/userContext'
 
 const Footer = () => {
+    const {userType}=useContext(userContext)
   return (
     <footer>
         <div>
@@ -9,8 +11,23 @@ const Footer = () => {
         </div>
         <div>
             <ul>
-                <li><Link to="/offers" className='link'>Offers</Link></li>
-                <li><Link to="/Companies" className='link'>Companies</Link></li>
+                {
+                    userType==="normal"?
+                    <>
+                        <li><Link to="/offers" className='link'>Offers</Link></li>
+                        <li><Link to="/companies" className='link'>Companies</Link></li>
+                    </>:(userType==="employer"?
+                        <>
+                            <li><Link to="/offers" className='link'>My Offers</Link></li>
+                            <li><Link to="/employer/add" className='link'>Add Offer</Link></li>
+                            <li><Link to="/employer/demands" className='link'>Applications</Link></li>
+                        </>:<>
+                                <li><Link to="/offers" className='link'>Offers</Link></li>
+                                <li><Link to="/companies" className='link'>Companies</Link></li>
+                                <li><Link to="/candidate/demands" className='link'>My Applications</Link></li>
+                            </>
+                    )
+                }
             </ul>
         </div>
         <div>

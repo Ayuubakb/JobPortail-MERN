@@ -1,7 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState, useEffect } from 'react'
+import { Link, useNavigate, redirect } from 'react-router-dom'
+import userContext from '../Controllers/userContext'
+import { logout } from '../Controllers/authControllers'
 
 const Nav = () => {
+    const navigate=useNavigate()
+    const {userType,setUserType}=useContext(userContext)
+    const [err,setErr]=useState("")
     const handleLogin=()=>{
         document.getElementById('login').animate(animation,timer)
         setTimeout(()=>{
@@ -9,6 +14,15 @@ const Nav = () => {
             document.getElementById('login').style.top="0"  
         },280)
     }
+    const handleLogout=()=>{
+        logout(setErr)
+    }
+    useEffect(()=>{
+        if(err===true){
+            setUserType("normal")
+            navigate("/")
+        }
+    },[err])
     const animation=[
         {width:"100vw"},
         {width:"100vw",top:'0'}
@@ -25,15 +39,44 @@ const Nav = () => {
             </div>
             <div className='links'>
                 <ul>
-                    <li><Link to="/offers" className='link'>Offers</Link></li>
-                    <li><Link to="/companies" className='link'>Companies</Link></li>
+                    {
+                        userType==="normal"?
+                        <>
+                            <li><Link to="/offers" className='link'>Offers</Link></li>
+                            <li><Link to="/companies" className='link'>Companies</Link></li>
+                        </>:(userType==="employer"?
+                            <>
+                                <li><Link to="/offers" className='link'>My Offers</Link></li>
+                                <li><Link to="/employer/add" className='link'>Add Offer</Link></li>
+                                <li><Link to="/employer/demands" className='link'>Applications</Link></li>
+                            </>:<>
+                                    <li><Link to="/offers" className='link'>Offers</Link></li>
+                                    <li><Link to="/companies" className='link'>Companies</Link></li>
+                                    <li><Link to="/candidate/demands" className='link'>My Applications</Link></li>
+                                </>
+                        )
+                    }
                 </ul>
             </div>
         </div>
         <div className='buttons'>
             <div>
-               <button onClick={handleLogin}>Login</button>
-               <button><Link to="/signup" className='link'>Signup</Link></button>
+                {
+                    userType==="normal"?
+                    <>
+                        <button onClick={handleLogin}>Login</button>
+                        <Link to="/signup" className='link'><button>Signup</button></Link>
+                    </>:(userType==="employer"?
+                        <>
+                            <Link to="/employer" className='link'><button><i class="fa-regular fa-user"></i></button></Link>
+                            <button onClick={handleLogout}><i class="fa-solid fa-right-from-bracket"></i></button>
+                        </>:<>
+                                <Link to="/candidate" className='link'><button><i class="fa-regular fa-user"></i></button></Link>
+                                <button onClick={handleLogout}><i class="fa-solid fa-right-from-bracket"></i></button>
+                            </>
+                    )
+                    
+                }
             </div>
         </div>
     </nav>

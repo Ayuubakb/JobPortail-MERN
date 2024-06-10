@@ -15,41 +15,54 @@ import Login from './Components/Login';
 import NotFound from './Pages/NotFound';
 import Nav from './Components/Nav';
 import Companies from './Pages/Companies';
+import Demands from './Pages/Demands';
 import Footer from './Components/Footer';
+import { useEffect, useState } from 'react';
+import userContext from './Controllers/userContext';
+import { check } from './Controllers/authControllers';
 
 function App() {
+  const [userType,setUserType]=useState(null);
+  const [id,setId]=useState(null);
+  console.log(userType);
+  useEffect(()=>{
+    check(setUserType,setId)
+  },[])
   return (
     <div className="App">
       <BrowserRouter>
-      <Login/>
-      <Nav/>
-        <Routes>
-          <Route index element={<Home/>}/>
-          <Route path='signup' element={<Signup/>}/>
-          <Route path='offers'>
-            <Route index element={<Offers/>}/>
-            <Route path=':id' element={<OneOffer/>}/>
-            <Route path='*' element={<NotFound/>}/>
-          </Route>
-          <Route path='companies' element={<Companies/>}/>
-          <Route path='Candidate'>
-            <Route index element={<CandidateDash/>}/>
-            <Route path='update' element={<UpdateCandidate/>}/>
-            <Route path='demands'>
-              <Route index element={<CandidateDemands/>}/>
-              <Route path=':id' element={<OneDemand/>}/>
+      <userContext.Provider value={{userType,id,setUserType}}>
+        <Login/>
+        <Nav/>
+          <Routes>
+            <Route index element={<Home/>}/>
+            <Route path='signup' element={<Signup/>}/>
+            <Route path='offers'>
+              <Route index element={<Offers/>}/>
+              <Route path=':id' element={<OneOffer/>}/>
               <Route path='*' element={<NotFound/>}/>
             </Route>
-            <Route path='*' element={<NotFound/>}/>
-          </Route>
-          <Route path='Employer'>
-            <Route index element={<EmployerDash/>}/>
-            <Route path='update' element={<UpdateEmployer/>}/>
-            <Route path='add' element={<AddOffer/>}/>
-            <Route path='*' element={<NotFound/>}/>
-          </Route>
-        </Routes>
-        <Footer/>
+            <Route path='companies' element={<Companies/>}/>
+            <Route path='Candidate'>
+              <Route index element={<CandidateDash/>}/>
+              <Route path='update' element={<UpdateCandidate/>}/>
+              <Route path='demands' element={<CandidateDemands/>}/>
+              <Route path='*' element={<NotFound/>}/>
+            </Route>
+            <Route path='Employer'>
+              <Route index element={<EmployerDash/>}/>
+              <Route path='update' element={<UpdateEmployer/>}/>
+              <Route path='add' element={<AddOffer/>}/>
+              <Route path='demands'>
+                <Route index element={<Demands/>}/>
+                <Route path=':id' element={<OneDemand/>}/>
+                <Route path='*' element={<NotFound/>}/>
+              </Route>
+              <Route path='*' element={<NotFound/>}/>
+            </Route>
+          </Routes>
+          <Footer/>
+        </userContext.Provider>
       </BrowserRouter>
     </div>
   );
