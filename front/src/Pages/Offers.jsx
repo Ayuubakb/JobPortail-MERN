@@ -1,71 +1,39 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import SearchBar from '../Components/SearchBar'
 import Offer from '../Components/Offer'
 import { presence } from '../Controllers/utils'
 
 const Offers = () => {
+  const [offers,setOffers]=useState({num:0,offers:[]});
   return (
     <section className='sec offers'>
-      <SearchBar/>
+      <SearchBar page="offers" setFunction={setOffers}/>
       <div className='resNum'>
-        <p>Results : 7</p>
+        <p>Results : {offers.num}</p>
       </div>
       <div className='offerContainer'>
-        <Offer
-          infos={{
-            field:"Technology",
-            title:"Full-stack developper Internship",
-            presence:"Hybrid",
-            time:"Full-Time",
-            position:"Internship",
-            postDate:"5/06/2024",
-            num:5
-          }}
-        />
-        <Offer
-          infos={{
-            field:"Technology",
-            title:"Full-stack developper Internship",
-            presence:"Hybrid",
-            time:"Full-Time",
-            position:"Internship",
-            postDate:"5/06/2024",
-            num:5
-          }}
-        />
-        <Offer
-          infos={{
-            field:"Technology",
-            title:"Full-stack developper Internship",
-            presence:"Hybrid",
-            time:"Full-Time",
-            position:"Internship",
-            postDate:"5/06/2024",
-            num:5
-          }}
-        />
-        <Offer
-          infos={{
-            field:"Technology",
-            title:"Full-stack developper Internship",
-            presence:"Hybrid",
-            time:"Full-Time",
-            position:"Internship",
-            postDate:"5/06/2024",
-            num:5
-          }}
-        />
-        <Offer
-          infos={{
-            field:"Technology",
-            title:"Full-stack developper Internship",
-            presence:"Hybrid",
-            time:"Full-Time",
-            position:"Internship",
-            postDate:"5/06/2024",
-            num:5
-          }}
-        />
+        {
+          offers.num!==0?
+          offers.offers.map((offer)=>{
+            let date=new Date(offer.postDate)
+            const dateToShow=`${date.getDay()}/${date.getMonth()+1}/${date.getFullYear()}`
+            return(
+              <Offer
+                infos={{
+                  id:offer.id,
+                  field:offer.field,
+                  title:offer.title,
+                  presence:offer.presence,
+                  time:offer.time,
+                  position:offer.position,
+                  postDate:dateToShow,
+                  num:offer.num
+                }}
+              />
+            )
+          })
+          :<h1 className='noData'>No Offers For The Moment</h1>
+        }
       </div>
     </section>
   )

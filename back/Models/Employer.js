@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const demand= require("./Demand")
+const offer= require("./Offer")
 
 const employerSchema=new mongoose.Schema({
     login:{
@@ -26,12 +26,12 @@ const employerSchema=new mongoose.Schema({
         enum:["Technology","Healthcare","Finance","Retail","Energy","Automotive","Telecommunications","Consumer Goods","Aerospace and Defense","Media and Entertainment"]
     },
     numEmployees:{
-        type:String
+        type:Number
     },
     emailReceive:{
         type:Boolean
     },
-    offers:[demand]
+    offers:[offer]
 })
 
 module.exports=mongoose.model("Employer",employerSchema,"User")

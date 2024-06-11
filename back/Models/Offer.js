@@ -2,6 +2,11 @@ const mongoose=require('mongoose')
 const demand=require('./Demand')
 
 const offerSchema=new mongoose.Schema({
+    id:{
+        type:mongoose.Types.ObjectId,
+        require:true,
+        unique:true
+    },
     title:{
         type:String
     },
@@ -20,7 +25,6 @@ const offerSchema=new mongoose.Schema({
     description:{
         type:String
     },
-    demands:[demand],
     position:{
         type:String,
         enum:["Permanent","Temporary","Internship"]
@@ -32,6 +36,10 @@ const offerSchema=new mongoose.Schema({
     presence:{
         type:String,
         enum:["Remote","Hybrid","OnSite"]
+    },
+    numDemands:{
+        type:Number,
+        default:0
     }
 })
 

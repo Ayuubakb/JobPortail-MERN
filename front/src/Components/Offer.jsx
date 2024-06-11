@@ -8,8 +8,8 @@ const Offer = ({infos}) => {
             <h1>{infos.title}</h1>
             <div className='tags'>
                 <p>{infos.presence}</p>
-                <p>{infos.time}</p>
-                <p>{infos.position}</p>
+                <p style={{backgroundColor:'darkgray'}}>{infos.time}</p>
+                <p style={{backgroundColor:'darkgreen'}}>{infos.position}</p>
             </div>
         </div>
         <div className='numAndDate'>

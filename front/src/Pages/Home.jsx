@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import { Link } from 'react-router-dom'
 import CompanyCard from '../Components/CompanyCard'
 import FeaturesCard from '../Components/FeaturesCard'
+import { basicTemplate } from '../Controllers/candidateControllers'
 
 const Home = () => {
+    const [companies,setCompanies]=useState({num:0,companies:[]})
+    const [offers,setOffers]=useState({num:0})
+    useEffect(()=>{
+        basicTemplate("companies",{home:true},setCompanies)
+        basicTemplate("offers",{home:true},setOffers)
+    },[])
   return (
     <section className='home'>
         <div className='banner1'>
@@ -35,52 +42,30 @@ const Home = () => {
                 </div>
                 <div className='stat'>
                     <h1><i class="fa-solid fa-city"></i></h1>
-                    <h2>+ 150 Companies</h2>
+                    <h2>+ {companies.num} Companies</h2>
                 </div>
                 <div className='stat'>
                     <h1><i class="fa-solid fa-scroll"></i></h1>
-                    <h2>+ 250 Offers</h2>
+                    <h2>+ {offers.num} Offers</h2>
                 </div>
             </div>
         </div>
         <div className='banner2'>
-            <h3>Our Best Partners : </h3>
+            <h3>Our Biggest Partners : </h3>
             <div className='cardContainer'>
-                <CompanyCard
-                    img="assets/cap.png"
-                    title="Capgemini"
-                    num="+1000"
-                    location="Casablanca"
-                    field="IT"
-                />
-                <CompanyCard
-                    img="assets/ibm.png"
-                    title="IBM"
-                    num="+1000"
-                    location="Casablanca"
-                    field="IT"
-                />
-                <CompanyCard
-                    img="assets/ora.png"
-                    title="Capgemini"
-                    num="+1000"
-                    location="Rabate"
-                    field="IT"
-                />
-                <CompanyCard
-                    img="assets/alten.png"
-                    title="Alten"
-                    num="+1000"
-                    location="Tetouan"
-                    field="Consulting"
-                />
-                <CompanyCard
-                    img="assets/renault.png"
-                    title="Renault"
-                    num="+1000"
-                    location="Tanger"
-                    field="Automobile"
-                />
+                {
+                    companies.companies.map((company)=>{
+                        return(
+                            <CompanyCard
+                                img={`${process.env.REACT_APP_SERVER_URI}Uploads/${company.picture}`}
+                                title={company.companyName}
+                                num={`+${company.numEmployees}`}
+                                location={company.location}
+                                field={company.field}
+                            />
+                        )
+                    })
+                }
             </div>
         </div>
         <div className='banner4'>

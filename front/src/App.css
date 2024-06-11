@@ -120,20 +120,23 @@ nav .buttons button{
 .companyCard{
   background-color: white;
   border-radius: 15px;
+  border: solid 1px gray;
 }
 .companyCard .pic{
   width: 100%;
   height: 200px;
+  padding-top: 10px;
 }
 .companyCard .pic img{
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
 }
 .companyCard .desc{
   padding: 10px;
   font-family: var(--fontSmall);
   color: var(--darkerGray);
+  border-top: solid 1px var(--grey);
 }
 .companyCard .desc h1{
   font-family: var(--fontBig);
@@ -177,8 +180,7 @@ nav .buttons button{
 .home .banner2 .cardContainer{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.2%;
+  gap: 0.25%;
 }
 .home .banner2 .cardContainer .companyCard{
   flex: 0 0 19%;
@@ -291,7 +293,7 @@ footer h3{
 .signup .signupCon{
   width: 40%;
   margin-left: 30%;
-  margin-top: 5%;
+  margin-top: 2%;
   border: solid 2px var(--darkGray);
   border-radius: 15px;
   padding: 15px;
@@ -472,13 +474,12 @@ footer h3{
 }
 .err{
   font-size: 20px;
-  color: var(--darkerGray);
+  color: var(--orange);
   font-family: var(--fontBig);
   text-align: center;
   margin-top: 25px;
   margin-bottom: 0;
   height: 22px;
-  text-decoration:2px var(--orange) underline;
 }
 .searchBar{
   display: flex;
@@ -539,6 +540,7 @@ footer h3{
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: white;
+  cursor: pointer;
 }
 .offer p{
   font-family: var(--fontSmall);
@@ -585,4 +587,31 @@ footer h3{
   font-weight: bolder;
   font-size: 15px;
   padding: 7px 15px;
+}
+.companies{
+  width: 97%;
+  margin-left: 1.5%;
+}
+.companies .companiesHolder{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+  margin-left: 1%;
+  margin-top: 25px;
+}
+.companiesHolder div{
+  flex: 0 0 23%;
+  margin-bottom: 15px;
+}
+.noData{
+  font-family: var(--fontBig);
+  font-size: 30px;
+  color: var(--grey);
+  padding: 5px;
+  background-color: var(--orange);
+  border-radius: 5px;
+  width: 250px;
+  text-align: center;
+  margin-left: calc((100% - 250px) / 2);
+  margin-top: 30px;
 }
