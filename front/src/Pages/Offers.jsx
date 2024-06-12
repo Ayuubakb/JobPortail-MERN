@@ -1,15 +1,17 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 import SearchBar from '../Components/SearchBar'
 import Offer from '../Components/Offer'
 import { presence } from '../Controllers/utils'
+import userContext from '../Controllers/userContext'
 
 const Offers = () => {
+  const userCon=useContext(userContext)
   const [offers,setOffers]=useState({num:0,offers:[]});
   return (
     <section className='sec offers'>
       <SearchBar page="offers" setFunction={setOffers}/>
       <div className='resNum'>
-        <p>Results : {offers.num}</p>
+        <p>{userCon.userType==="employer"?"Number of offers you posted":"Results"} : {offers.num}</p>
       </div>
       <div className='offerContainer'>
         {

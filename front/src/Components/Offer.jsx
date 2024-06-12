@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import userContext from '../Controllers/userContext'
 
 const Offer = ({infos}) => {
+    const userCon=useContext(userContext)
+    const handleDelete=()=>{
+
+    }
   return (
     <div className='offer'>
         <div className='infos'>
@@ -9,7 +14,7 @@ const Offer = ({infos}) => {
             <div className='tags'>
                 <p>{infos.presence}</p>
                 <p style={{backgroundColor:'darkgray'}}>{infos.time}</p>
-                <p style={{backgroundColor:'darkgreen'}}>{infos.position}</p>
+                <p style={{backgroundColor:'#686D76'}}>{infos.position}</p>
             </div>
         </div>
         <div className='numAndDate'>
@@ -17,9 +22,19 @@ const Offer = ({infos}) => {
                 <p>Posted : {infos.postDate}</p>
             </div>
             <div>
-                <p>Applications: {infos.num}</p>
+                {
+                    userCon.userType==="employer"?
+                    <p>Applications: {infos.num}</p>
+                    :null
+                }
             </div>
         </div>
+        {
+            userCon.userType==="employer"?
+            <div className='del' onClick={handleDelete}>
+                <i class="fa-solid fa-trash"></i>
+            </div>:null
+        }
     </div>
   )
 }

@@ -47,7 +47,6 @@ const Nav = () => {
                         </>:(userType==="employer"?
                             <>
                                 <li><Link to="/offers" className='link'>My Offers</Link></li>
-                                <li><Link to="/employer/add" className='link'>Add Offer</Link></li>
                                 <li><Link to="/employer/demands" className='link'>Applications</Link></li>
                             </>:<>
                                     <li><Link to="/offers" className='link'>Offers</Link></li>

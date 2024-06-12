@@ -7,18 +7,16 @@ const getOffers=async(req,res)=>{
     const aggregate=Employer.aggregate().match({'companyName':{$exists:true}}).unwind("$offers")
     let objct
     if(!filter.home){
-        if(filter.industries!==""){
+        if(req.session.Auth && req.session.Auth.companyName)
+            aggregate.append([{$match:{'_id':req.session.Auth.id}}])
+        if(filter.industries!=="")
             aggregate.append([{$match:{'offers.field':filter.industries}}])
-        }
-        if(filter.position!==""){
+        if(filter.position!=="")
             aggregate.append([{$match:{'offers.position':filter.position}}])
-        }
-        if(filter.time!==""){
+        if(filter.time!=="")
             aggregate.append([{$match:{'offers.time':filter.time}}])
-        }
-        if(filter.presence!==""){
+        if(filter.presence!=="")
             aggregate.append([{$match:{'offers.presence':filter.presence}}])
-        }
         aggregate.append({$project:{
             id:"$offers.id",
             position:"$offers.position",

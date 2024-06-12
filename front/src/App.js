@@ -20,16 +20,18 @@ import Footer from './Components/Footer';
 import { useEffect, useState } from 'react';
 import userContext from './Controllers/userContext';
 import { check } from './Controllers/authControllers';
+import Waiting from './Components/Waiting';
 
 function App() {
   const [userType,setUserType]=useState(null);
   const [id,setId]=useState(null);
-  console.log(userType);
   useEffect(()=>{
     check(setUserType,setId)
   },[])
   return (
     <div className="App">
+      {
+        userType!==null?
       <BrowserRouter>
       <userContext.Provider value={{userType,id,setUserType}}>
         <Login/>
@@ -63,7 +65,8 @@ function App() {
           </Routes>
           <Footer/>
         </userContext.Provider>
-      </BrowserRouter>
+      </BrowserRouter>:<Waiting/>
+      } 
     </div>
   );
 }

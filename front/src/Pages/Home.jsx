@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import CompanyCard from '../Components/CompanyCard'
 import FeaturesCard from '../Components/FeaturesCard'
 import { basicTemplate } from '../Controllers/candidateControllers'
+import WaintingCard from '../Components/WaintingCard'
 
 const Home = () => {
-    const [companies,setCompanies]=useState({num:0,companies:[]})
+    const [companies,setCompanies]=useState({num:null,companies:[]})
     const [offers,setOffers]=useState({num:0})
     useEffect(()=>{
         basicTemplate("companies",{home:true},setCompanies)
@@ -34,6 +35,25 @@ const Home = () => {
                 </div>  
             </div>
         </div>
+        <div className='banner2'>
+            <h3>Our Biggest Partners : </h3>
+            <div className='cardContainer'>
+                {
+                    companies.num!==null?
+                    companies.companies.map((company)=>{
+                        return(
+                            <CompanyCard
+                                img={`${process.env.REACT_APP_SERVER_URI}Uploads/${company.picture}`}
+                                title={company.companyName}
+                                num={`+${company.numEmployees}`}
+                                location={company.location}
+                                field={company.field}
+                            />
+                        )
+                    }):<WaintingCard/>
+                }
+            </div>
+        </div>
         <div className='banner3'>
             <div className='statsContainer'>
                 <div className='stat'>
@@ -48,24 +68,6 @@ const Home = () => {
                     <h1><i class="fa-solid fa-scroll"></i></h1>
                     <h2>+ {offers.num} Offers</h2>
                 </div>
-            </div>
-        </div>
-        <div className='banner2'>
-            <h3>Our Biggest Partners : </h3>
-            <div className='cardContainer'>
-                {
-                    companies.companies.map((company)=>{
-                        return(
-                            <CompanyCard
-                                img={`${process.env.REACT_APP_SERVER_URI}Uploads/${company.picture}`}
-                                title={company.companyName}
-                                num={`+${company.numEmployees}`}
-                                location={company.location}
-                                field={company.field}
-                            />
-                        )
-                    })
-                }
             </div>
         </div>
         <div className='banner4'>

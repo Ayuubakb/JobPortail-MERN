@@ -33,10 +33,12 @@ const Login = () => {
       handleClose();
       setUserType("employer")
       navigate("Employer")
+      setErr("")
     }else if(err==="candidate"){
       handleClose();
       setUserType("candidate")
       navigate("candidate")
+      setErr("")
     }
   },[err])
   return (
