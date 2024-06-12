@@ -1,3 +1,8 @@
 const express=require("express")
-const { getPostedOffers } = require("../Controllers/EmployerControllers")
+const { addOffer, deleteOffer } = require("../Controllers/EmployerControllers")
 const Router=express.Router()
+
+Router.post('/addOffer',addOffer)
+Router.delete('/deleteOffer/:id',deleteOffer)
+
+module.exports=Router

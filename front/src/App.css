@@ -7,7 +7,7 @@ body{
   background-color: var(--grey);
 }
 .sec{
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh);
   position: relative;
 }
 :root{
@@ -394,18 +394,18 @@ footer h3{
 .signup .signupCon label:has(input:checked){
   background-color: #686D76;
 }
-.input, .selIn{
+.input, .selIn , .offers .formHolder div{
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
 }
-.input label , .selIn label{
+.input label , .selIn label , .offers .formHolder div label{
   font-family: var(--fontSmall);
   font-size: 18px;
   margin-bottom: 5px;
   color: var(--darkerGray);
 }
-.input input, .selIn select{
+.input input, .selIn select, .offers .formHolder select{
   border: none;
   border-radius: 5px;
   padding: 5px 8px;
@@ -512,8 +512,8 @@ footer h3{
 .searchBar{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 10px;
-  margin-top: 10px;
 }
 .searchBar .filter{
   color: var(--orange);
@@ -526,10 +526,12 @@ footer h3{
   border-radius: 5px;
   color: var(--darkerGray);
   font-family: var(--fontSmall);
-  font-size: 17px;
-  padding: 8px 18px;
+  font-size: 15px;
+  padding: 8px 4px;
+  margin-top: 10px;
 }
 .searchBar button{
+  margin-top: 10px;
   font-size: 17px;
   width: 35px;
   height: 35px;
@@ -543,8 +545,68 @@ footer h3{
   cursor: pointer;
 }
 .offers{
-  width: 97%;
-  margin-left: 1.5%;
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+.offers .all{
+  flex: 0 0 calc(100% - 100px);
+  transition: ease 0.3s;
+  padding-bottom: 15px;
+  margin-left: 15px;
+}
+.offers .add{
+  flex: 0 0 100px;
+  overflow: hidden;
+  background-color: rgb(212, 212, 212);
+  transition: ease 0.3s;
+  padding-bottom: 15px;
+}
+.offers .add .part{
+  border-bottom: solid 1px rgb(187, 185, 185);
+}
+.offers .add textarea{
+  border: solid 1px var(--grey);
+  height: 100px;
+  border-radius: 10px;
+}
+.offers .add .selects{
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  gap: 10px;
+}
+.offers .add button{
+  padding: 10px 18px;
+  font-size: 20px;
+  font-family: var(--fontSmall);
+  border: none;
+  background-color: var(--orange);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  float: right;
+}
+.offers .head{
+  margin: 10px;
+  background-color: var(--orange);
+  font-size: 30px;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+.offers .head i{
+  transition: ease 0.3s;
+}
+.offers .formHolder{
+  padding: 15px;
+  width: 90%;
+  margin-left: 5%;
+  display: none;
 }
 .offers .resNum{
   font-size: 20px;
@@ -559,7 +621,7 @@ footer h3{
   gap: 15px;
 }
 .offer{
-  flex: 0 0 49%;
+  flex: 0.3 1 400px;
   padding: 10px;
   border: solid 1px var(--darkGray);
   display: flex;
@@ -570,19 +632,20 @@ footer h3{
   background-color: white;
   cursor: pointer;
   position: relative;
+  transition: ease 0.3s
 }
 .offer p{
   font-family: var(--fontSmall);
 }
 .offer .infos p{
   color: var(--darkerGray);
-  font-size: 17px;
+  font-size: 15px;
   font-style: italic;
 }
 .offer .infos h1{
   font-family: var(--fontBig);
   color: rgb(35, 35, 35);
-  font-size: 24px;
+  font-size: 22px;
   margin-top: 7px;
   margin-bottom: 17px;
 }
@@ -591,11 +654,11 @@ footer h3{
   align-items: center;
 }
 .offer .tags p{
-  padding: 7px 15px;
+  padding: 7px 10px;
   border-radius: 5px;
   background-color: var(--orange);
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   margin-right: 7px;
   font-style: normal;
 }
@@ -608,14 +671,14 @@ footer h3{
 .offer .numAndDate p{
   padding: 5px;
   font-family: var(--fontSmall);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--darkGray);
 }
 .offer .numAndDate div:nth-child(2) p{
   color: #DC5F00;
   font-weight: bolder;
-  font-size: 15px;
-  padding: 7px 15px;
+  font-size: 14px;
+  padding: 7px 10px;
 }
 .offer .del{
   position: absolute;

@@ -6,6 +6,7 @@ const MongoDbStore=require("connect-mongodb-session")(session)
 const cors=require("cors");
 const authRoute=require("./Routes/AuthRoutes")
 const canRoute=require('./Routes/CandidateRoutes')
+const empRoute=require('./Routes/EmployerRoutes')
 
 mongoose.connect("mongodb://localhost:27017/jobPortail").then(()=>{
     console.log("connected to database");
@@ -40,5 +41,6 @@ app.use("/Uploads",express.static("Uploads"))
 
 app.use("/Authentification",authRoute)
 app.use("/Candidate",canRoute)
+app.use("/Employer",empRoute)
 
 app.listen(9090,()=> console.log("listening on port 9090"))

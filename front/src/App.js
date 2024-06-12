@@ -9,7 +9,6 @@ import OneDemand  from './Pages/OneDemand';
 import OneOffer from './Pages/OneOffer';
 import EmployerDash from './Pages/EmployerDash';
 import UpdateEmployer from './Pages/UpdateEmployer';
-import AddOffer from './Pages/AddOffer';
 import Signup from './Pages/Signup';
 import Login from './Components/Login';
 import NotFound from './Pages/NotFound';
@@ -54,7 +53,6 @@ function App() {
             <Route path='Employer'>
               <Route index element={<EmployerDash/>}/>
               <Route path='update' element={<UpdateEmployer/>}/>
-              <Route path='add' element={<AddOffer/>}/>
               <Route path='demands'>
                 <Route index element={<Demands/>}/>
                 <Route path=':id' element={<OneDemand/>}/>

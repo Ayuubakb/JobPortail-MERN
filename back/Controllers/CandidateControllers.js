@@ -5,7 +5,7 @@ const mongoose=require("mongoose")
 const getOffers=async(req,res)=>{
     const filter=req.body
     const aggregate=Employer.aggregate().match({'companyName':{$exists:true}}).unwind("$offers")
-    let objct
+    let objct;
     if(!filter.home){
         if(req.session.Auth && req.session.Auth.companyName)
             aggregate.append([{$match:{'_id':req.session.Auth.id}}])
@@ -56,7 +56,7 @@ const getCompanies=async(req,res)=>{
         companies:result
     }
     res.status(200).json(objct)
-}
+} 
 
 module.exports={
     getOffers,

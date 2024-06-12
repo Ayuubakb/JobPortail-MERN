@@ -15,8 +15,7 @@ const offerSchema=new mongoose.Schema({
         default:new Date()
     },
     expireDate:{
-        type:Date,
-        default:new Date()
+        type:Date
     },
     field:{
         type:String,
