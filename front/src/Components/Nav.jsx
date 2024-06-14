@@ -4,9 +4,7 @@ import userContext from '../Controllers/userContext'
 import { logout } from '../Controllers/authControllers'
 
 const Nav = () => {
-    const navigate=useNavigate()
-    const {userType,setUserType}=useContext(userContext)
-    const [err,setErr]=useState("")
+    const {userType}=useContext(userContext)
     const handleLogin=()=>{
         document.getElementById('login').animate(animation,timer)
         setTimeout(()=>{
@@ -15,14 +13,8 @@ const Nav = () => {
         },280)
     }
     const handleLogout=()=>{
-        logout(setErr)
+        logout()
     }
-    useEffect(()=>{
-        if(err===true){
-            setUserType("normal")
-            navigate("/")
-        }
-    },[err])
     const animation=[
         {width:"100vw"},
         {width:"100vw",top:'0'}

@@ -1,4 +1,3 @@
-
 const basicTemplate=async(path,objct,setFun)=>{
     const response=await fetch(process.env.REACT_APP_SERVER_URI+"Candidate/"+path,{
         method:"POST",

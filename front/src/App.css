@@ -745,3 +745,108 @@ footer h3{
   font-size: 40px;
   color: white;
 }
+.oneOffer{
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 70px;
+  border: solid 1px var(--darkGray);
+  padding: 15px;
+  border-radius: 15px;
+}
+.oneOffer h3, .oneOffer h2{
+  font-family: var(--fontBig);
+  font-size: 28px;
+  color: var(--darkerGray);
+}
+.oneOffer h2{
+  font-family: var(--fontBig);
+  font-size: 25px;
+  color: var(--darkerGray);
+}
+.oneOffer .company{
+  display: flex;
+  border-bottom: solid 2px var(--orange) ;
+  border-radius: 5px;
+}
+.oneOffer .company p{
+  font-family: var(--fontSmall);
+  font-size: 17px;
+  color: var(--darkGray);
+}
+.oneOffer .company .img{
+  transform: translate(10px,-57px);
+  width: 100px;
+  height: 100px;
+}
+.oneOffer .company .compInf{
+  margin-left: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 110px);
+}
+.oneOffer .company .compInf div:nth-child(1){
+  flex: 0 0 70%;
+}
+.oneOffer .company .compInf div:nth-child(2) h3{
+  text-align: center;
+  background-color: var(--orange);
+  color: var(--grey);
+  border-radius: 15px;
+}
+.oneOffer .company .img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.oneOffer .offerDetail{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.oneOffer .offerDetail h1{
+  font-family: var(--fontBig);
+  color: var(--darkerGray);
+  font-size: 32px;
+}
+.oneOffer .offerDetail .holder{
+  display: flex;
+  align-items: center;
+  gap: 25%;
+  margin-top: 10px;
+}
+.oneOffer .offerDetail .holder p, .oneOffer .description p{
+  font-family: var(--fontSmall);
+  font-size: 20px;
+  color: var(--darkGray);
+  margin-bottom: 5px;
+}
+.oneOffer .offerDetail .holder span{
+  font-family: var(--fontSmall);
+  font-size: 19px;
+  color: var(--darkerGray);
+}
+.oneOffer .description p{
+  margin-top: 10px;
+  font-size: 18px;
+}
+.oneOffer .foot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.oneOffer .foot p{
+  font-family: var(--fontSmall);
+  font-size: 16px;
+  color: var(--orange);
+}
+.oneOffer .foot button{
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--orange);
+  color: white;
+  font-size: 22px;
+  font-family: var(--fontBig);
+  cursor: pointer;
+}

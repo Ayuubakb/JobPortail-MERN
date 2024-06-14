@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Input from './Input'
 import { login } from '../Controllers/authControllers'
 import { useNavigate } from "react-router-dom"
-import userContext from '../Controllers/userContext'
 
 const Login = () => {
-  const navigate=useNavigate()
-  const {setUserType}=useContext(userContext)
   const [inputs,setInputs]=useState({login:"",password:""})
   const [err,setErr]=useState("");
   const handleSubmit=(e)=>{
@@ -31,14 +28,10 @@ const Login = () => {
   useEffect(()=>{
     if(err==="employer"){
       handleClose();
-      setUserType("employer")
-      navigate("Employer")
-      setErr("")
+      window.location.href="/employer"
     }else if(err==="candidate"){
       handleClose();
-      setUserType("candidate")
-      navigate("candidate")
-      setErr("")
+      window.location.href="/candidate"
     }
   },[err])
   return (

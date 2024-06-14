@@ -51,13 +51,14 @@ const signup=async(inputs,setError)=>{
     })
 }
 
-const logout=async(setErr)=>{
+const logout=async()=>{
     const response=await fetch(process.env.REACT_APP_SERVER_URI+"Authentification/logout",{
         method:"DELETE",
         credentials:'include'
     })
     await response.json().then((res)=>{
-        setErr(res.msg)
+       if(res.msg===true)
+        window.location.href="/"
     })
 }
 module.exports={

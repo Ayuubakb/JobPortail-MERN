@@ -27,7 +27,38 @@ const deleteOffer=async(req,res)=>{
         res.status(404).json({msg:false})
     }) 
 }
+
+const getOffer=async(req,res)=>{
+    const id=req.params.id
+    await Employer.aggregate().unwind("$offers").match({"offers.id": new mongoose.Types.ObjectId(id)}).then((result)=>{
+        if(result.length==1){
+            const data=result[0]
+            let postDate=new Date(data.offers.postDate)
+            postDate=`${postDate.getDate()}/${postDate.getMonth()+1}/${postDate.getFullYear()}`
+            let expireDate=new Date(data.offers.expireDate)
+            expireDate=`${expireDate.getDate()}/${expireDate.getMonth()+1}/${expireDate.getFullYear()}`
+            const objct={
+                idCom:data._id,
+                title:data.offers.title,
+                picture:data.picture,
+                postDate:postDate,
+                expireDate:expireDate,
+                field:data.offers.field,
+                description:data.offers.description,
+                position:data.offers.position,
+                time:data.offers.time,
+                presence:data.offers.presence,
+                numDemands:data.offers.numDemands,
+                companyName:data.companyName
+            }
+            res.status(404).json(objct)
+        }else{
+            res.status(404).json({msg:"Offer not found"})
+        }
+    })
+}
 module.exports={
     addOffer,
-    deleteOffer
+    deleteOffer,
+    getOffer
 }
