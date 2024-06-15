@@ -1,6 +1,8 @@
+const session = require("express-session")
 const { industries, position } = require("../../front/src/Controllers/utils")
 const Employer=require("../Models/Employer")
 const mongoose=require("mongoose")
+const Candidate = require("../Models/Candidate")
 
 const getOffers=async(req,res)=>{
     const filter=req.body
@@ -56,9 +58,27 @@ const getCompanies=async(req,res)=>{
         companies:result
     }
     res.status(200).json(objct)
-} 
+}   
+
+const apply=async(req,res)=>{
+    if(req.session.Auth && req.session.Auth.firstName){
+        const idUser=req.session.Auth.id
+        const idPost=req.params.id
+        const checkApplied=await Candidate.aggregate().match({"_id":idUser}).unwind("$demands").match({"demands.IdOffer":new mongoose.Types.ObjectId(idPost)}).count("demandsCount").exec()
+        console.log(checkApplied);
+        if(checkApplied.length===0 || checkApplied[0].demandsCount===0){
+            await Candidate.updateOne({"_id":idUser},{$push:{"demands":{"IdOffer":idPost}}}).then((result)=>{
+                if(result.modifiedCount!==0)
+                    res.status(200).json({msg:"Application Sent"})
+            })
+        }else
+            res.status(400).json({msg:"You Have Already Applied For This Position"}) 
+    }else
+        res.status(403).json({msg:"Not Connected"})
+}
 
 module.exports={
     getOffers,
-    getCompanies
+    getCompanies,
+    apply
 }

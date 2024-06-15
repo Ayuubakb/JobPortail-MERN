@@ -3,7 +3,6 @@ const mongoose=require('mongoose')
 const demandSchema=new mongoose.Schema({
     IdOffer:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'offer',
         require:true
     },
     date:{
@@ -13,9 +12,6 @@ const demandSchema=new mongoose.Schema({
     status:{
         type:Number,
         default:2
-    },
-    cv:{
-        type:String
     }
 })
 

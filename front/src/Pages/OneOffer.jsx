@@ -3,6 +3,7 @@ import userContext from '../Controllers/userContext'
 import Waiting from '../Components/Waiting'
 import { basicDelete, basicGet } from '../Controllers/employerController'
 import { useNavigate } from 'react-router-dom'
+import { candidateBasicGet } from '../Controllers/candidateControllers'
 
 const OneOffer = () => {
   const navigate=useNavigate()
@@ -10,11 +11,12 @@ const OneOffer = () => {
   const userCon=useContext(userContext)
   const [deleted,setDeleted]=useState(false)
   const [infos,setInfos]=useState(null)
+  const [err,seterr]=useState(null)
   const handleDelete=()=>{
     basicDelete("deleteOffer",params.split('/')[2],setDeleted)
   }
   const handleApply=()=>{
-
+    candidateBasicGet("apply",params.split('/')[2],seterr)
   }
   useEffect(()=>{
     basicGet("getOffer",params.split('/')[2],setInfos)
@@ -26,6 +28,7 @@ const OneOffer = () => {
  
   return (
     <section className='sec'>
+      <p className='err' style={{fontSize:"25px"}}>{err}</p>
       <div className='oneOffer'>
         {
           infos!==null && infos.title?

@@ -12,10 +12,12 @@ const employerSchema=new mongoose.Schema({
         require:true
     },
     companyName:{
-        type:String
+        type:String,
+        require:true
     },
     location:{
-        type:String
+        type:String,
+        require:true
     },
     picture:{
         type:String,

@@ -12,10 +12,12 @@ const candidateSchema=new mongoose.Schema({
         require:true,
     },
     firstName:{
-        type:String
+        type:String,
+        require:true
     },
     lastName:{
-        type:String
+        type:String,
+        require:true
     },
     picture:{
         type:String
@@ -30,6 +32,9 @@ const candidateSchema=new mongoose.Schema({
     },
     emailReceive:{
         type:Boolean
+    },
+    cv:{
+        type:String
     },
     demands:[demand]
 })
