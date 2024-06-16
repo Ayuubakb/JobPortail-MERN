@@ -26,12 +26,16 @@ const Login = () => {
     duration:300
   }
   useEffect(()=>{
+    const path=new URL(document.location).pathname
     if(err==="employer"){
       handleClose();
       window.location.href="/employer"
     }else if(err==="candidate"){
       handleClose();
-      window.location.href="/candidate"
+      if(path.split("/")[1]==="offers")
+        window.location.href=process.env.REACT_APP_CLIENT_URI+"offers/"+path.split("/")[2]
+      else
+        window.location.href="/candidate"
     }
   },[err])
   return (

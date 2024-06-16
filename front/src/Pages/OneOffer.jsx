@@ -4,6 +4,7 @@ import Waiting from '../Components/Waiting'
 import { basicDelete, basicGet } from '../Controllers/employerController'
 import { useNavigate } from 'react-router-dom'
 import { candidateBasicGet } from '../Controllers/candidateControllers'
+import { handleLogin } from '../Controllers/utils'
 
 const OneOffer = () => {
   const navigate=useNavigate()
@@ -16,7 +17,7 @@ const OneOffer = () => {
     basicDelete("deleteOffer",params.split('/')[2],setDeleted)
   }
   const handleApply=()=>{
-    candidateBasicGet("apply",params.split('/')[2],seterr)
+    candidateBasicGet("apply",params.split('/')[2],seterr,handleLogin)
   }
   useEffect(()=>{
     basicGet("getOffer",params.split('/')[2],setInfos)

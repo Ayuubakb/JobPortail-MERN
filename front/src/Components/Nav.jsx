@@ -2,26 +2,12 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Link, useNavigate, redirect } from 'react-router-dom'
 import userContext from '../Controllers/userContext'
 import { logout } from '../Controllers/authControllers'
+import { handleLogin } from '../Controllers/utils'
 
 const Nav = () => {
     const {userType}=useContext(userContext)
-    const handleLogin=()=>{
-        document.getElementById('login').animate(animation,timer)
-        setTimeout(()=>{
-            document.getElementById('login').style.width="100vw"  
-            document.getElementById('login').style.top="0"  
-        },280)
-    }
     const handleLogout=()=>{
         logout()
-    }
-    const animation=[
-        {width:"100vw"},
-        {width:"100vw",top:'0'}
-    ]
-    const timer={
-        iterations:1,
-        duration:300
     }
   return (
     <nav>
@@ -42,8 +28,8 @@ const Nav = () => {
                                 <li><Link to="/employer/demands" className='link'>Applications</Link></li>
                             </>:<>
                                     <li><Link to="/offers" className='link'>Offers</Link></li>
-                                    <li><Link to="/companies" className='link'>Companies</Link></li>
                                     <li><Link to="/candidate/demands" className='link'>My Applications</Link></li>
+                                    <li><Link to="/companies" className='link'>Companies</Link></li>
                                 </>
                         )
                     }

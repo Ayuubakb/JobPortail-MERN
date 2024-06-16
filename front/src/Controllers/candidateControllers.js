@@ -12,17 +12,28 @@ const basicTemplate=async(path,objct,setFun)=>{
     })
 }
 
-const candidateBasicGet=async(path,id,setFun)=>{
+const candidateBasicGet=async(path,id,setFun,loginFun)=>{
     const response=await fetch(process.env.REACT_APP_SERVER_URI+"Candidate/"+path+"/"+id,{
         method:"GET",
         credentials:"include"
     })
     await response.json().then((res)=>{
-        setFun(res.msg)
+        response.status===403?loginFun():setFun(res.msg)
+    })
+}
+
+const candidateGetNoId=async(path,setFun)=>{
+    const response=await fetch(process.env.REACT_APP_SERVER_URI+"Candidate/"+path,{
+        method:"GET",
+        credentials:"include"
+    })
+    await response.json().then((res)=>{
+        setFun(res)
     })
 }
 
 module.exports={
     basicTemplate,
-    candidateBasicGet
+    candidateBasicGet,
+    candidateGetNoId
 }

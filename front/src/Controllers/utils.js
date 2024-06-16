@@ -24,9 +24,27 @@ const time=[
     "Full-Time",
     "Part-Time"
 ]
+const animation=[
+    {width:"100vw"},
+    {width:"100vw",top:'0'}
+]
+const timer={
+    iterations:1,
+    duration:300
+}
+const handleLogin=()=>{
+    document.getElementById('login').animate(animation,timer)
+    setTimeout(()=>{
+        document.getElementById('login').style.width="100vw"  
+        document.getElementById('login').style.top="0"  
+    },280)
+  }
 module.exports={
     industries,
     position,
     time,
-    presence
+    presence,
+    handleLogin,
+    animation,
+    timer
 }

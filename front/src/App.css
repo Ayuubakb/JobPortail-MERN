@@ -9,6 +9,7 @@ body{
 .sec{
   min-height: calc(100vh);
   position: relative;
+  padding-bottom: 15px;
 }
 :root{
   --grey:#EEEEEE;
@@ -849,4 +850,71 @@ footer h3{
   font-size: 22px;
   font-family: var(--fontBig);
   cursor: pointer;
+}
+.canDemands{
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: 2.5%;
+}
+.canDemands .accepted{
+  padding: 10px;
+  margin-bottom: 15px;
+}
+.canDemands .refusedAndWaiting{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+.canDemands .refusedAndWaiting .waiting,.canDemands .refusedAndWaiting .refused{
+  flex: 1 0 max(49%,400px);
+  border-radius: 15px;
+  padding: 10px;
+}
+.canDemands  div h1{
+  font-size: 30px;
+  color: var(--orange);
+  font-family: var(--fontBig);
+}
+.canDemands .container{
+  display: flex;
+  gap: 1%;
+  flex-wrap: wrap;
+}
+.oneApp{
+  border: solid 1px var(--darkerGray);
+  margin-top: 10px;
+  border-radius: 15px;
+  width: 90%;
+  background-color: white;
+  flex : 0 0 max(32%,450px);
+  cursor: pointer;
+}
+.oneApp .infos{
+  display: flex;
+  justify-content: space-between;
+}
+.oneApp .infos div:nth-child(1){
+  padding: 10px;
+}
+.oneApp .infos h2{
+  font-size: 20px;
+  color: var(--darkerGray);
+}
+.oneApp .infos p{
+  font-size: 16px;
+  color: var(--darkGray);
+  font-style: italic;
+}
+.oneApp .infos h3{
+  font-size: 18px;
+  color: var(--darkerGray);
+}
+.oneApp .appDate{
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  font-family: var(--fontSmall);
+  font-size: 16px;
+  border-left: solid 1px gray;
 }

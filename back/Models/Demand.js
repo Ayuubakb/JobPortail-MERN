@@ -12,6 +12,10 @@ const demandSchema=new mongoose.Schema({
     status:{
         type:Number,
         default:2
+    },
+    interviewDate:{
+        type:Date,
+        default:new Date()
     }
 })
 

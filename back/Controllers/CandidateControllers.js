@@ -65,7 +65,6 @@ const apply=async(req,res)=>{
         const idUser=req.session.Auth.id
         const idPost=req.params.id
         const checkApplied=await Candidate.aggregate().match({"_id":idUser}).unwind("$demands").match({"demands.IdOffer":new mongoose.Types.ObjectId(idPost)}).count("demandsCount").exec()
-        console.log(checkApplied);
         if(checkApplied.length===0 || checkApplied[0].demandsCount===0){
             await Candidate.updateOne({"_id":idUser},{$push:{"demands":{"IdOffer":idPost}}}).then((result)=>{
                 if(result.modifiedCount!==0)
@@ -77,8 +76,53 @@ const apply=async(req,res)=>{
         res.status(403).json({msg:"Not Connected"})
 }
 
+const getApplications=async(req,res)=>{
+    const getInf=async(acc)=>{
+        const inf=await Employer.aggregate()
+        .unwind("$offers")
+        .match({"offers.id":acc.demands.IdOffer})
+        .project({
+          companyName:"$companyName",
+          field:'$offers.field',
+          title:'$offers.title',
+          IdOffer:"$offers.id",
+        }).exec()
+        return inf[0]
+    }
+    if(req.session.Auth && req.session.Auth.firstName){
+        const idUser=req.session.Auth.id
+        let objct={accepted:[],refused:[],pending:[]}
+        const accepted=await Candidate.aggregate().match({"_id":idUser}).unwind("$demands").match({"demands.status":1}).exec()
+        const accMap=accepted.map(async(acc)=>{
+            const inf=await getInf(acc)
+            return {...inf,appDate:acc.demands.date,status:acc.demands.status,interviewDate:''}
+        })
+        const accArray=await Promise.all(accMap)
+        objct["accepted"]=accArray
+
+        const refused=await Candidate.aggregate().match({"_id":idUser}).unwind("$demands").match({"demands.status":0}).exec()
+        const refMap=refused.map(async(acc)=>{
+            const inf=await getInf(acc)
+            return {...inf,appDate:acc.demands.date,status:acc.demands.status,interviewDate:''}
+        })
+        const refArray=await Promise.all(refMap)
+        objct["refused"]=refArray
+
+        const pending=await Candidate.aggregate().match({"_id":idUser}).unwind("$demands").match({"demands.status":2}).exec()
+        const penMap=pending.map(async(acc)=>{
+            const inf=await getInf(acc)
+            return {...inf,appDate:acc.demands.date,status:acc.demands.status,interviewDate:''}
+        })
+        const penArray=await Promise.all(penMap)
+        objct["pending"]=penArray
+
+        res.status(200).json(objct)
+    }else
+        res.status(403).json({msg:"Not Connected"})
+}
 module.exports={
     getOffers,
     getCompanies,
-    apply
+    apply,
+    getApplications
 }
