@@ -44,7 +44,7 @@ const Offers = () => {
       <div className='all' id="all">
         <SearchBar page="offers" setFunction={setOffers}/>
         <div className='resNum'>
-          <p>{userCon.userType==="employer"?"Number of offers you posted":"Results"} : {offers.num}</p>
+          <p>{userCon.userType==="employer"?"Number Your Active Offers":"Results"} : {offers.num}</p>
         </div>
         <div className='offerContainer'>
           {

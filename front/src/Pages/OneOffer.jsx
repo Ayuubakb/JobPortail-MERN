@@ -77,7 +77,7 @@ const OneOffer = () => {
             <div>
               {
                 userCon.userType==="employer" && userCon.id===infos.idCom?
-                <button onClick={handleDelete}>Delete</button>
+                (!infos.archived?<button onClick={handleDelete}>Delete</button>:null)
                 :<button onClick={handleApply}>Apply</button>
               }
             </div>

@@ -6,7 +6,7 @@ const Candidate = require("../Models/Candidate")
 
 const getOffers=async(req,res)=>{
     const filter=req.body
-    const aggregate=Employer.aggregate().match({'companyName':{$exists:true}}).unwind("$offers")
+    const aggregate=Employer.aggregate().match({'companyName':{$exists:true}}).unwind("$offers").match({"offers.archived":false})
     let objct;
     if(!filter.home){
         if(req.session.Auth && req.session.Auth.companyName)

@@ -30,6 +30,8 @@ const basicGet=async(path,id,setFun)=>{
     })
 }
 
+
+
 module.exports={
     basicTemplate,
     basicDelete,

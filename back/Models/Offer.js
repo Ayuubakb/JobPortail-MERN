@@ -39,6 +39,10 @@ const offerSchema=new mongoose.Schema({
     numDemands:{
         type:Number,
         default:0
+    },
+    archived:{
+        type:Boolean,
+        default:false
     }
 })
 
