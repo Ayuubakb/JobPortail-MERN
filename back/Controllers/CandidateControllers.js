@@ -120,9 +120,33 @@ const getApplications=async(req,res)=>{
     }else
         res.status(403).json({msg:"Not Connected"})
 }
+
+const getProfile=async(req,res)=>{
+    if(req.session.Auth && req.session.Auth.firstName){
+        const idUser=req.session.Auth.id
+        const profile=await Candidate.findOne({_id:idUser})
+        const stats=await Candidate.aggregate([{$match:{"_id":idUser}},{$unwind:"$demands"},{$group:{_id:'$demands.status',count:{$sum:1}}}]).exec()
+        const objct={
+            lastName:profile.firstName,
+            firstName:profile.lastName,
+            login:profile.login,
+            number:profile.number,
+            picture:profile.picture,
+            cv:profile.cv,
+            emailReceive:profile.emailReceive,
+            field:profile.field,
+            interviewCount:stats.find((e)=>{return e._id===1}).count,
+            aplicationCount:stats.find((e)=>{return e._id===2}).count,
+            refusedCount:stats.find((e)=>{return e._id===0}).count
+        }
+        res.status(200).json(objct)
+    }else
+        res.status(403).json({msg:'Not Allowed'})
+}
 module.exports={
     getOffers,
     getCompanies,
     apply,
-    getApplications
+    getApplications,
+    getProfile
 }
