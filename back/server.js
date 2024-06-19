@@ -6,7 +6,8 @@ const MongoDbStore=require("connect-mongodb-session")(session)
 const cors=require("cors");
 const authRoute=require("./Routes/AuthRoutes")
 const canRoute=require('./Routes/CandidateRoutes')
-const empRoute=require('./Routes/EmployerRoutes')
+const empRoute=require('./Routes/EmployerRoutes');
+const bodyParser = require('body-parser');
 
 mongoose.connect("mongodb://localhost:27017/jobPortail").then(()=>{
     console.log("connected to database");
@@ -35,8 +36,8 @@ app.use(cors({
 }
 ))
 
-app.use(express.json())
-app.use(express.urlencoded({extends:true}))
+app.use(bodyParser.urlencoded({ extended:true }))
+app.use(bodyParser.json())
 app.use("/Uploads",express.static("Uploads"))
 
 app.use("/Authentification",authRoute)

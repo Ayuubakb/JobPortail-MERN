@@ -18,7 +18,10 @@ const candidateBasicGet=async(path,id,setFun,loginFun)=>{
         credentials:"include"
     })
     await response.json().then((res)=>{
-        response.status===403?loginFun():setFun(res.msg)
+        if(loginFun)
+            response.status===403?loginFun():setFun(res.msg)
+        else
+            setFun(res)
     })
 }
 
@@ -32,8 +35,20 @@ const candidateGetNoId=async(path,setFun)=>{
     })
 }
 
+const candidateForm=async(path,formData,setErr)=>{
+    const response=await fetch(process.env.REACT_APP_SERVER_URI+"Candidate/"+path,{
+        method:"POST",
+        credentials:'include',
+        body:formData
+    })
+    await response.json().then((res)=>{
+        setErr(res.msg)
+    })
+}
+
 module.exports={
     basicTemplate,
     candidateBasicGet,
-    candidateGetNoId
+    candidateGetNoId,
+    candidateForm
 }

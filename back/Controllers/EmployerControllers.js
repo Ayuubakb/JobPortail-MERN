@@ -80,6 +80,7 @@ const getDemands=async(req,res)=>{
         else
             pipeline1.append([{$match:{"demands.IdOffer":{$in:ids}}}])
         const demands=await pipeline1.project({
+            idUser:"$_id",
             firstName:"$firstName",
             lastName:"$lastName",
             appDate:"$demands.date",

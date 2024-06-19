@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userContext from '../Controllers/userContext'
 import Input from './Input'
 import { basicGet, basicTemplate } from '../Controllers/employerController'
 
-const Application = ({IdOffer,idDemand,field,companyName,title,appDate,status,interviewDate,firstName,lastName}) => {
+const Application = ({idUser,IdOffer,idDemand,field,companyName,title,appDate,status,interviewDate,firstName,lastName}) => {
     const [style,setStyle]=useState({})
     const [date,setdate]=useState("")
     const [remove,setRemove]=useState(false)
@@ -37,11 +37,11 @@ const Application = ({IdOffer,idDemand,field,companyName,title,appDate,status,in
     interviewDate=`${tmp.getDate()}/${tmp.getMonth()+1}/${tmp.getFullYear()}`
   return (
     <div className='oneApp' style={{display:remove?"none":"block"}}>
-        <div className='infos' onClick={()=>{navigate('/offers/'+IdOffer)}}>
+        <div className='infos' >
             <div>
                 <p>{field}</p>
-                <h2>{title}</h2>
-                <h3>{companyName?companyName:`${firstName} ${lastName}`}</h3>
+                <h2 onClick={()=>{navigate('/offers/'+IdOffer)}}>{title}</h2>
+                <h3>{companyName?companyName:<Link className='link' to={`/candidate?id=${idUser}`} style={{color:"gray"}}>{firstName} {lastName}</Link>}</h3>
             </div>
             <div className='appDate'>
                 {

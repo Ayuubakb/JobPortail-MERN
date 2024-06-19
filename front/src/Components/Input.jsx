@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Input = ({name,placeholder,inputs,setInputs,type}) => {
+const Input = ({name,placeholder,inputs,setInputs,type,value}) => {
   return (
     <div className='input'>
         <label>{placeholder} :</label>
@@ -8,7 +8,7 @@ const Input = ({name,placeholder,inputs,setInputs,type}) => {
             name={name}
             type={type}
             placeholder={placeholder+"..."}
-            value={inputs.name}
+            value={!value?inputs.name:value}
             onChange={(e)=>{setInputs((i)=>{return {...i,[name]:e.target.value}})}}
         />
     </div>  

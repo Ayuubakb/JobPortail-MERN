@@ -15,6 +15,7 @@ const Demands = () => {
             demands.arr.map((a)=>{
               return(
                 <Application
+                  idUser={a.idUser}
                   IdOffer={a.IdOffer}
                   field={a.field}
                   title={a.title}
