@@ -33,11 +33,7 @@ const CandidateDash = () => {
           <Link to="update" className='link'><i class="fa-solid fa-pen-to-square"></i></Link>
         </div>:null}
       </div>
-      <div className='cvHolder'>
-        <img src={`${process.env.REACT_APP_SERVER_URI}Uploads/${infos.cv}`}/>
-      </div>
-    </div>
-    {
+      {
       userCon.userType=="candidate" && !id?
       <div className='stats'>
         <Stat
@@ -57,6 +53,10 @@ const CandidateDash = () => {
         />
       </div>:null
     }
+    </div>
+    <div className='cvHolder'>
+        <img src={`${process.env.REACT_APP_SERVER_URI}Uploads/${infos.cv}`}/>
+    </div>
     </section>
   )
 }

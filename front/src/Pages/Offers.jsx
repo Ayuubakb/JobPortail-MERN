@@ -112,7 +112,7 @@ const Offers = () => {
                   <div>
                     <label>Position : </label>
                     <select name="position" onChange={handleChange}>
-                      <option value="">--Industry--</option>
+                      <option value="">--Position--</option>
                       {
                           position.map((industry)=>{
                           return(
@@ -125,7 +125,7 @@ const Offers = () => {
                   <div>
                     <label>Time Partition : </label>
                     <select name="time" onChange={handleChange}>
-                      <option value="">--Industry--</option>
+                      <option value="">--Partition--</option>
                       {
                         time.map((industry)=>{
                           return(
@@ -138,7 +138,7 @@ const Offers = () => {
                   <div>
                     <label>Presence : </label>
                     <select name="presence" onChange={handleChange}>
-                      <option value="">--Industry--</option>
+                      <option value="">--Presence--</option>
                       {
                         presence.map((industry)=>{
                           return(

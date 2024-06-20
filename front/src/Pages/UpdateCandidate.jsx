@@ -27,7 +27,10 @@ const UpdateCandidate = () => {
   }
 
   const handleRadio=()=>{
-
+    if(document.getElementById("yesRadio").checked)
+      setInputs((i)=>{return {...i,["emailReceive"]:true}})
+    else
+      setInputs((i)=>{return {...i,["emailReceive"]:false}})  
   }
   useEffect(()=>{
     candidateGetNoId('getProfile',setInputs)

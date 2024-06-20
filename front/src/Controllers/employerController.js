@@ -29,11 +29,31 @@ const basicGet=async(path,id,setFun)=>{
         setFun(res)
     })
 }
-
+const basicGetNoId=async(path,setFun)=>{
+    const response=await fetch(process.env.REACT_APP_SERVER_URI+"Employer/"+path,{
+        method:"GET",
+        credentials:'include'
+    })
+    await response.json().then((res)=>{
+        setFun(res)
+    })
+}
+const emplForm=async(path,formData,setErr)=>{
+    const response=await fetch(process.env.REACT_APP_SERVER_URI+"Employer/"+path,{
+        method:"POST",
+        body:formData,
+        credentials:'include'
+    })
+    await response.json().then((res)=>{
+        setErr(res.msg)
+    })
+}
 
 
 module.exports={
     basicTemplate,
     basicDelete,
-    basicGet
+    basicGet,
+    basicGetNoId,
+    emplForm
 }
