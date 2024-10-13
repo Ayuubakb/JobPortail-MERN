@@ -301,9 +301,9 @@ footer h1{
 footer ul{list-style: none;}
 footer li{margin-bottom: 15px;}
 footer li .link{
-  color: var(--darkerGray);
   font-size: 25px;
-  font-family: var(--fontSmall);
+  font-family: var(--fontBig);
+  color: var(--darkGray);
 }
 footer h2{
   background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
@@ -513,8 +513,11 @@ footer h3{
 .searchBar{
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   padding: 10px;
+}
+.searchBar .selCon{
+  display: flex;
+  flex-wrap: wrap;
 }
 .searchBar .filter{
   color: var(--orange);
@@ -557,7 +560,7 @@ footer h3{
   margin-left: 15px;
 }
 .offers .add{
-  flex: 0 0 100px;
+  flex: 0 0 50%;
   overflow: hidden;
   background-color: rgb(212, 212, 212);
   transition: ease 0.3s;
@@ -760,9 +763,7 @@ footer h3{
   color: var(--darkerGray);
 }
 .oneOffer h2{
-  font-family: var(--fontBig);
   font-size: 25px;
-  color: var(--darkerGray);
 }
 .oneOffer .company{
   display: flex;
@@ -811,7 +812,6 @@ footer h3{
 }
 .oneOffer .offerDetail .holder{
   display: flex;
-  align-items: center;
   gap: 25%;
   margin-top: 10px;
 }
@@ -901,11 +901,13 @@ footer h3{
 .oneApp .infos h2{
   font-size: 20px;
   color: var(--darkerGray);
+  margin-bottom: 10px;
 }
 .oneApp .infos p{
   font-size: 16px;
   color: var(--darkGray);
   font-style: italic;
+  margin-bottom: 5px;
 }
 .oneApp .infos h3{
   font-size: 18px;
@@ -1178,4 +1180,401 @@ footer h3{
   padding-bottom: 4px;
   border-bottom-left-radius: 5px;
   width: 70%;
+}
+@media screen and (max-width:850px) {
+  .home .banner1 .head h1{
+    font-size: 27px;
+  }
+  .home .banner1 .textContainer{
+    margin-top: 15px;
+  }
+  .home .banner1 .textContainer p{
+    font-size: 15px;
+  }
+  .home .banner1 .logoContainer div{
+    width: 95%;
+    height: 350px;
+    margin-left: 10%;
+  }
+  .home .banner1 .textContainer button{
+    font-size: 17px;
+  }
+  .home .banner2{
+    padding: 10px;
+  }
+  .home .banner2 .cardContainer{
+    gap: 15px;
+    overflow-x: scroll;
+  }
+  .companyCard .desc h1{
+    font-size: 20px;
+  }
+  .companyCard p{
+    font-size: 15px;
+  }
+  .companyCard h2{
+    font-size: 16px;
+  }
+  .home .banner2 .cardContainer .companyCard{
+    flex: 0 0 30%;
+  }
+  .home .stat h1{
+    font-size: 40px;
+  }
+  .featuresCard .face1 h1{
+    font-size: 23px;
+  }
+  .featuresCard .face2{
+    font-size: 19px;
+  }
+  footer h1{
+    font-size: 25px;
+  }
+  footer li .link{
+    font-size: 18px;
+  }
+  footer h2{
+    font-size: 25px;
+    padding: 7px;
+  }
+  footer h3{
+    font-size: 17px;
+  }
+  .searchBar select{
+    margin-right: 10px;
+    font-size: 17px;
+    padding: 5px 3px;
+  }
+  .searchBar button{
+    width: 150px;
+    border-radius: 10px;
+  }
+  .offers .offer{
+    flex: 0 0 100%;
+  }
+  .companies .companiesHolder{
+    gap: 15px;
+  }
+  .companies .companiesHolder div{
+    flex: 0 0 30%;
+  }
+  .login{
+    padding: 25px;
+    padding-bottom: 45px;
+    padding-top: 45px;
+    width: 75%;
+  }
+  .login p{
+    font-size: 20px;
+  }
+  .login h1{
+    font-size: 40px;
+  }
+  .signup .signupCon{
+    margin-top: 50px;
+    width: 90%;
+    margin-left: 5%;
+    padding-bottom: 20px;
+  }
+  .canDash{
+    width: 90%;
+    margin-left: 2.5%;
+  }
+  .oneOffer{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .canDemands .refusedAndWaiting .waiting,.canDemands .refusedAndWaiting .refused{
+    flex: 1 0 max(49%,400px);
+    border-radius: 15px;
+    padding: 10px;
+  }
+  .offers .add{
+    flex:0 0 80%
+  }
+  .sideBar{
+    padding: 15px;
+    padding-top: 75px;
+    width: 220px;
+  }
+  .demands .demandsContainer .holder .oneApp{
+    flex: 0 0 95%;
+  }
+  .demands .demandsContainer{
+    margin-left:240px ;
+  }.update form{
+    width: 90%;
+    margin-left: 5%;
+    padding: 13px;
+  }
+  .update form .group{
+    gap: 10px;
+    padding-left: 13px;
+  }
+  .update form h2{
+    font-size: 22px;
+  }.update form button{
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+}
+@media screen and (max-width:500px) {
+  .home .banner1 .head h1{
+    font-size: 18px;
+  }
+  .home .banner1 .head h1 span{
+    font-size: 20px;
+  }
+  .home .banner1 .all{
+    flex-direction: column-reverse;
+  }
+  .home .banner1 .logoContainer div{
+    width: 100%;
+    margin-left: 0;
+    height: fit-content;
+    margin-top: 20px;
+  }
+  .home .banner2{
+    padding: 10px;
+  }
+  .companyCard .desc h1{
+    font-size: 19px;
+  }
+  .companyCard p{
+    font-size: 14px;
+  }
+  .companyCard h2{
+    font-size: 15px;
+  }
+  .companyCard .pic{
+    height: 150px;
+  }
+  .home .banner2 .cardContainer .companyCard{
+    flex: 0 0 60%;
+  }
+  .home .banner3 .stat{
+    padding: 7px;
+  }
+  .home .stat h1{
+    font-size: 25px;
+  }
+  .home .stat h2{
+    font-size: 18px;
+    text-align: center;
+  }
+  .home .banner4 .features{
+    flex-direction: column;
+  }
+  .featuresCard{
+    margin-bottom: 10px;
+  }
+  .featuresCard .face1, .featuresCard .face2{
+    padding: 40px;
+  }
+  footer{
+    flex-direction: column;
+  }
+  footer h1{
+    margin-bottom: 15px;
+  }
+  footer h2{
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  footer h3{
+    font-size: 15px;
+    text-align: center;
+  }
+  .searchBar select{
+    font-size: 15px;
+    padding: 3px ;
+    width: 200px;
+  }
+  .searchBar button{
+    width: 200px;
+    border-radius: 10px;
+  }
+  .offers .offer{
+    flex: 0 0 100%;
+  }
+  .offer{
+    padding: 5px;
+  }
+  .offer .infos{
+    flex: 0 0 70%;
+  }
+  .offer .infos p{
+    font-size: 15px;
+  }
+  .offer .infos h1{
+    font-size: 19px;
+  }
+  .offer .tags p{
+    padding: 5px;
+    font-size: 12px;
+    margin-right: 4px;
+  }
+  .offer .numAndDate p{
+    font-size: 10px;
+  }
+  .offer .numAndDate div:nth-child(2) p{
+    font-size: 11px;
+    padding: 3px 5px;
+    text-align: center;
+  }
+  .offer .del{
+    bottom: -7px;
+    right: -7px;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+  .companies .companiesHolder{
+    padding: 15px;
+  }
+  .companies .companiesHolder div{
+    flex: 0 0 100%;
+  }
+  .login{
+    width:90%;
+  }
+  .login p{
+    font-size: 16px;
+  }
+  .login h1{
+    font-size: 30px;
+  }
+  .login button{
+    font-size: 19px;
+  }
+  .login .closelog{
+    font-size: 13px;
+    width: 35px;
+    height: 35px;
+    top: -14px;
+    right: -14px;
+  }
+  .signup .signupCon{
+    margin-top: 50px;
+    width: 98%;
+    margin-left: 1%;
+    padding-bottom: 20px;
+  }
+  .canDash{
+    width: 90%;
+    margin-left: 2.5%;
+  }
+  .oneOffer{
+    width: 98%;
+    margin-left: 1%;
+  }
+  .oneOffer h3, .oneOffer h2{
+    font-size: 22px;
+  }
+  .oneOffer .company p{
+    font-size: 15px;
+  }
+  .oneOffer .offerDetail h1{
+    font-size: 27px;
+  }
+  .oneOffer .offerDetail .holder{
+    flex-direction: column;
+    gap: 0;
+  }
+  .oneOffer .offerDetail .holder div{
+    flex: 0 0 100%;
+  }
+  .oneOffer .offerDetail .holder span{
+    font-size: 16px;
+  }
+  .oneOffer .offerDetail .holder p, .oneOffer .description p{
+    font-size: 15px;
+  }
+  .oneOffer .foot p{
+    font-size: 14px;
+  }
+  .oneOffer .foot button{
+    padding: 8px 18px;
+    font-size: 18px;
+  }
+  .canDemands .refusedAndWaiting .waiting,.canDemands .refusedAndWaiting .refused{
+    flex: 1 0 max(49%,400px);
+    border-radius: 15px;
+    padding: 10px;
+  }
+  .offers .add{
+    flex:0 0 80%
+  }
+  .sideBar{
+    padding: 15px;
+    padding-top: 75px;
+    width: 220px;
+  }
+  .demands .demandsContainer .holder .oneApp{
+    flex: 0 0 95%;
+  }
+  .demands .demandsContainer{
+    margin-left:240px ;
+  }
+  .update form{
+    width: 98%;
+    margin-left: 1%;
+    padding: 7px;
+  }
+  .update form .group{
+    gap: 2px;
+    padding-left: 9px;
+  }
+  .update form .group div{
+    flex:0 0 90%;
+  }
+  .update form h2{
+    font-size: 20px;
+  }
+  .update form button{
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+  .canDash{
+    width: 98%;
+    margin-left: 1%;
+  }
+  .canDash .profile{
+    flex: 0 0 98%;
+    padding: 5px;
+  }
+  .canDash .profile .top div:nth-child(1){
+    transform: translate(25px,-45px);
+    width: 90px;
+    height: 90px;
+  }
+  .canDash .profile p{
+    font-size: 16px;
+  }
+  .canDash .profile .top div:nth-child(2){
+    margin-left: 45px;
+    padding: 5px;
+  }
+  .canDash .profile .top div:nth-child(2) h1{
+    font-size: 25px;
+  }
+  .canDash .profile .top div:nth-child(3){
+    margin-left: 40px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .canDash .edit{
+    bottom: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    font-size: 17px;
+  }
+  .canDash .stats{
+    margin-top: 15px;
+  }
+  .canDash .stat .num{
+    font-size: 25px;
+    padding: 10px;
+  }
 }

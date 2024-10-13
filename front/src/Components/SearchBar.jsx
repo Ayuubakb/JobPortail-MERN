@@ -18,6 +18,7 @@ const SearchBar = ({page,setFunction}) => {
         <div className='filter'>
             <i class="fa-solid fa-filter"></i>
         </div>
+        <div className='selCon'>
         <div>
             <select onChange={handleChange} name='industries'>
                 <option value="">-- Select Industry --</option>
@@ -73,6 +74,7 @@ const SearchBar = ({page,setFunction}) => {
         }
         <div className='btn'>
             <button onClick={handleClick}><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
         </div>
     </div>
   )

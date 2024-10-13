@@ -30,13 +30,18 @@ const Offers = () => {
   useEffect(()=>{
     if(userCon.userType==="employer")
     if(!isOpen){
-      document.getElementById("all").style.flex="0 0 calc(100% - 100px)"
+      document.getElementById("all").style.transform="translateX(0)"
       document.getElementById("addOff").querySelector(".formHolder").style.display='none';
-      document.getElementById("addOff").style.flex="0 0 100px"
+      document.getElementById("addOff").style.transform="translateX(0)"
     }else{
-      document.getElementById("all").style.flex="0 0 60%"
+      if(window.matchMedia("(max-width: 850px)").matches){
+        document.getElementById("all").style.transform="translateX(-90%)"
+        document.getElementById("addOff").style.transform="translateX(-90%)"
+      }else{
+        document.getElementById("all").style.transform="translateX(-30%)"
+        document.getElementById("addOff").style.transform="translateX(-90%)"
+      }
       document.getElementById("addOff").querySelector(".formHolder").style.display='block';
-      document.getElementById("addOff").style.flex="0 0 40%"
     }
   },[isOpen])
   return (

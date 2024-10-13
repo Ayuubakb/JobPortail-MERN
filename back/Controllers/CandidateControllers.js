@@ -138,9 +138,9 @@ const getProfile=async(req,res)=>{
             cv:profile.cv,
             emailReceive:profile.emailReceive,
             field:profile.field,
-            interviewCount:stats.find((e)=>{return e._id===1}).count,
-            aplicationCount:stats.find((e)=>{return e._id===2}).count,
-            refusedCount:stats.find((e)=>{return e._id===0}).count
+            interviewCount:stats.find((e)=>{return e._id===1})?stats.find((e)=>{return e._id===1}).count:0,
+            aplicationCount:stats.find((e)=>{return e._id===2})?stats.find((e)=>{return e._id===2}).count:0,
+            refusedCount:stats.find((e)=>{return e._id===0})?stats.find((e)=>{return e._id===0}).count:0
         }
         res.status(200).json(objct)
     }

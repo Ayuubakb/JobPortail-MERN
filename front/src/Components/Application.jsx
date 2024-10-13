@@ -41,7 +41,7 @@ const Application = ({idUser,IdOffer,idDemand,field,companyName,title,appDate,st
             <div>
                 <p>{field}</p>
                 <h2 onClick={()=>{navigate('/offers/'+IdOffer)}}>{title}</h2>
-                <h3>{companyName?companyName:<Link className='link' to={`/candidate?id=${idUser}`} style={{color:"gray"}}>{firstName} {lastName}</Link>}</h3>
+                {companyName?<h3><i class="fa-solid fa-building"></i> {companyName}</h3>:<h3><Link className='link' to={`/candidate?id=${idUser}`} style={{color:"gray"}}><i class="fa-solid fa-user"></i>{firstName} {lastName}</Link></h3>}
             </div>
             <div className='appDate'>
                 {
