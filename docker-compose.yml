@@ -1,0 +1,46 @@
+services:
+    front:
+      build: 
+        context: ./front
+      image: ayoubakb/jobportail-front
+      ports:
+        - 3000:3000
+      environment :
+        - REACT_APP_CLIENT_URI=${REACT_APP_CLIENT_URI}
+        - REACT_APP_SERVER_URI=${REACT_APP_SERVER_URI}
+      depends_on :
+        - back
+      networks: 
+        - job_portailNetwork
+      
+    back:
+      container_name: back
+      build: ./back
+      image: ayoubakb/jobportail-back
+      ports:
+        - 9090:9090
+      environment: 
+        - DB_URI=mongodb://db/jobPortail
+      depends_on:
+        - db
+      networks:
+        - job_portailNetwork
+
+    db:
+      container_name: db
+      image: mongo:latest
+      ports:
+        - 27017:27017
+      volumes : 
+        - job_portail:/data/db
+      networks:
+        - job_portailNetwork
+
+volumes:
+  job_portail:
+    driver: local 
+networks:
+  job_portailNetwork:
+    driver: bridge
+
+      

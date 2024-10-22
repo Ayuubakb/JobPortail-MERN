@@ -1,6 +1,6 @@
 const Candidate=require("../Models/Candidate")
 const Employer=require("../Models/Employer")
-const bcrypt=require("bcrypt")
+const bcrypt=require("bcryptjs")
 
 const verifyConnected=(req,res,next)=>{
     if(req.session.Auth===undefined){

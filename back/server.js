@@ -9,14 +9,14 @@ const canRoute=require('./Routes/CandidateRoutes')
 const empRoute=require('./Routes/EmployerRoutes');
 const bodyParser = require('body-parser');
 
-mongoose.connect("mongodb://localhost:27017/jobPortail").then(()=>{
+mongoose.connect(process.env.DB_URI || "mongodb://localhost:27017/jobPortail").then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
     console.log("An Error Has Occured : "+err);
 })
 
 const storage=new MongoDbStore({
-    uri:"mongodb://localhost:27017/jobPortail",
+    uri:process.env.DB_URI,
     collection:"mySession"
 })
 app.use(session({
