@@ -74,7 +74,7 @@ Après ces étapes, l'application sera prête à être testée sur votre machine
 ![Alt text](Assets/Stack.jpg)
 
 ## Demo
-![Alt text](Assets/landing.png)
+![Alt text](Assets/Landing.png)
 ![Alt text](Assets/login.png)
 ![Alt text](Assets/Signup.png)
 ![Alt text](Assets/Companies.png)
@@ -82,7 +82,7 @@ Après ces étapes, l'application sera prête à être testée sur votre machine
 ****
 - **Entreprise 🏬 :** 
 ![Alt text](Assets/companyProfile.png)
-![Alt text](Assets/companyOffers.png)
+![Alt text](Assets/companyoffers.png)
 ![Alt text](Assets/addoffer.png)
 ![Alt text](Assets/candidatures.png)
 ![Alt text](Assets/viewProfile.png)
@@ -91,10 +91,8 @@ Après ces étapes, l'application sera prête à être testée sur votre machine
 
 ![Alt text](Assets/userProfile.png)
 ![Alt text](Assets/update.png)
-![Alt text](Assets/partenaireProfile.png)
+![Alt text](Assets/userProfile.png)
 ![Alt text](Assets/applications.png)
-![Alt text](Assets/commentaires.png)
-
 
 
 
