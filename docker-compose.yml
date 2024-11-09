@@ -2,7 +2,6 @@ services:
     front:
       build: 
         context: ./front
-      image: ayoubakb/jobportail-front
       ports:
         - 3000:3000
       environment :
@@ -16,7 +15,6 @@ services:
     back:
       container_name: back
       build: ./back
-      image: ayoubakb/jobportail-back
       ports:
         - 9090:9090
       environment: 
@@ -29,15 +27,18 @@ services:
     db:
       container_name: db
       image: mongo:latest
+      environment:
+        - MONGO_INITDB_DATABASE:jobPortail
       ports:
         - 27017:27017
       volumes : 
-        - job_portail:/data/db
+        - ./init.js:/docker-entrypoint-initdb.d/init.js
+        - job_portailVolume:/data/db
       networks:
         - job_portailNetwork
 
 volumes:
-  job_portail:
+  job_portailVolume:
     driver: local 
 networks:
   job_portailNetwork:
