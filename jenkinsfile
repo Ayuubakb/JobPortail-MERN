@@ -18,15 +18,17 @@ pipeline {
             }
         }
         stage('Login to dockerHub'){
-            steps{
+            steps {
                 withCredentials([usernamePassword(credentialsID:'dockerHub',usernameVariable:'DOCKER_USERNAME',passwordVariable:'DOCKER_PASSWORD')]){
                     sh "docker log -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                 }
             }
         }
         stage('Deploy to dockerHub'){
-            sh "docker-compose push front"
-            sh "docker-compose push back"
+            steps {
+                sh "docker-compose push front"
+                sh "docker-compose push back"
+            }
         }
     }
     post {
