@@ -1,6 +1,8 @@
 pipeline {
-    agent any
-    environment{
+    agent {
+        label 'jenkins-slave-node'
+    }
+    environment {
         DOCKER_HOST = "tcp://172.18.0.2:2375"
     }
     stages {
@@ -9,11 +11,22 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Deploy with Docker Compose') {
+        stage('Build with Docker Compose') {
             steps {
                 sh 'docker-compose down'
-                sh 'docker-compose up -d'
+                sh 'docker-compose build'
             }
+        }
+        stage('Login to dockerHub'){
+            steps{
+                withCredentials([usernamePassword(credentialsID:'dockerHub',usernameVariable:'DOCKER_USERNAME',passwordVariable:'DOCKER_PASSWORD')]){
+                    sh "docker log -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                }
+            }
+        }
+        stage('Deploy to dockerHub'){
+            sh "docker-compose push front"
+            sh "docker-compose push back"
         }
     }
     post {
