@@ -1,7 +1,7 @@
 services:
     front:
       container_name: front
-      image: ayoubakb/jobPortail-front:latest
+      image: ayoubakb/jobportail-front:latest
       build: 
         context: ./front
       ports:
@@ -16,7 +16,7 @@ services:
       
     back:
       container_name: back
-      image: ayoubakb/jobPortail-back:latest
+      image: ayoubakb/jobportail-back:latest
       build: ./back
       ports:
         - 9090:9090
